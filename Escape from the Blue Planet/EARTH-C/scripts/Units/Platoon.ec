@@ -8,8 +8,8 @@ platoon "translateDefaultPlatoon"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -17,7 +17,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -25,7 +25,7 @@ multi:
     enum movementMode
     {
         "translateCommandStateFollowEnemy",
-        "translateCommandStateHoldPosition",
+            "translateCommandStateHoldPosition",
             
 multi:
         "translateCommandStateMovement"
@@ -34,7 +34,7 @@ multi:
     enum platoonType
     {
         "translateCommandPlatoonNormal",
-        "translateCommandPlatoonDefensive",
+            "translateCommandPlatoonDefensive",
             
 multi:
         "translateCommandPlatoonType"
@@ -168,8 +168,6 @@ multi:
     state FirstState //pluton jest w tym stanie dopuki nie zobaczy pierwszego wroga w tym stanie rozgladaja sie wszysy bo pluton moze byc rozproszony
     {
         int i;
-        int nFindTarget;
-
         if(traceMode)   TraceD("F");
         if(movementMode==1)
         {
@@ -186,23 +184,7 @@ multi:
         {
             for(i=0;i<GetUnitsCount() && !m_uTarget;i=i+1)
             {
-                nFindTarget = 0;
-                if (CanCannonFireToAircraft(i, -1))
-                {
-                    nFindTarget = findTargetFlyingUnit;
-                }
-                if (CanCannonFireToGround(i, -1))
-                {
-                    if (GetCannonType(i,0) == cannonTypeEarthquake)
-                    {
-                        nFindTarget = nFindTarget | findTargetBuildingUnit;
-                    }
-                    else
-                    {
-                        nFindTarget = nFindTarget | findTargetNormalUnit | findTargetWaterUnit | findTargetBuildingUnit;
-                    }
-                }
-                m_uTarget = FindTarget(i,nFindTarget,findEnemyUnit,findNearestUnit,findDestinationAnyUnit);
+                m_uTarget = FindTarget(i,findTargetWaterUnit|findTargetNormalUnit|findTargetBuildingUnit,findEnemyUnit,findNearestUnit,findDestinationAnyUnit);
                 if (m_uTarget != null) SetLeader(i);
             }
         }
@@ -219,8 +201,6 @@ multi:
     //------------------------------------------------------- 
     state Nothing
     {
-        int nFindTarget;
-
         if(traceMode)   TraceD("N");
         if(movementMode==1)
         {
@@ -234,27 +214,10 @@ multi:
         if(!m_uTarget)
         {
             if(traceMode)     TraceD("  FT");
-            nFindTarget = 0;
-            if (CanCannonFireToAircraft(0, -1))
-            {
-                nFindTarget = findTargetFlyingUnit;
-            }
-            if (CanCannonFireToGround(0, -1))
-            {
-                if (GetCannonType(0,0) == cannonTypeEarthquake)
-                {
-                    nFindTarget = nFindTarget | findTargetBuildingUnit;
-                }
-                else
-                {
-                    nFindTarget = nFindTarget | findTargetNormalUnit | findTargetWaterUnit | findTargetBuildingUnit;
-                    if (m_bFindAndDestroyWalls)
-                    {
-                        nFindTarget = nFindTarget | findTargetWall;
-                    }
-                }
-            }
-            m_uTarget = FindTarget(0,nFindTarget,findEnemyUnit,findNearestUnit,findDestinationAnyUnit);
+            if (m_bFindAndDestroyWalls)
+                m_uTarget = FindTarget(0,findTargetWaterUnit|findTargetWall| findTargetNormalUnit|findTargetBuildingUnit,findEnemyUnit,findNearestUnit,findDestinationAnyUnit);
+            else
+                m_uTarget = FindTarget(0,findTargetWaterUnit|findTargetNormalUnit|findTargetBuildingUnit,findEnemyUnit,findNearestUnit,findDestinationAnyUnit);
         }
         if(traceMode)   TraceD(".");
         if (m_uTarget != null)
@@ -308,10 +271,10 @@ multi:
         if(!bAuto)
         {
             if (m_uTarget.IsLive())
-                        {
-                                PrepareAttack(m_uTarget);
+            {
+                PrepareAttack(m_uTarget);
                 return Attacking,60;
-                        }
+            }
             EndAttack();
             EndState();
             return Nothing;
@@ -411,13 +374,13 @@ multi:
         SetCannonFireMode(-1,-1, enableFire);
         EndAttack();
         CallStopMoving();
-                movementMode = 1;
+        movementMode = 1;
         EnableFeatures(platoonFreeUnits,false);
         if(GetType()==typeHelicopters) PrepareStop();
-                ChangedCommandValue();
+        ChangedCommandValue();
         state Nothing;
     }
-
+    
     //--------------------------------------------------------------------------
     command Move(int nGx, int nGy, int nLz) hidden button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21
     {

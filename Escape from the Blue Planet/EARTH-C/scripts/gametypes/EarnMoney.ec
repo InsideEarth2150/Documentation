@@ -6,29 +6,29 @@ mission "translateGameTypeEarnMoney"
     enum comboMoney
     {
         "translateScript20000CR",
-        "translateScript30000CR",
-        "translateScript40000CR",
+            "translateScript30000CR",
+            "translateScript40000CR",
 multi:
         "translateGameMenuStartingMoney"
     }
     enum comboMoneyToEarn
     {
-                "translateScript25000CR",
-        "translateScript40000CR",
-        "translateScript50000CR",
-        "translateScript75000CR",
-                "translateScript100000CR",
+        "translateScript25000CR",
+            "translateScript40000CR",
+            "translateScript50000CR",
+            "translateScript75000CR",
+            "translateScript100000CR",
 multi:
         "translateGameMenuMoneyToGain"
     }
     enum comboTime
     {
         "translateGameMenuTimeLimitNoLimit",
-        "translateGameMenuTimeLimit15min",
-        "translateGameMenuTimeLimit30min",
-        "translateGameMenuTimeLimit45min",
-        "translateGameMenuTimeLimit1h",
-        "translateGameMenuTimeLimit15h",
+            "translateGameMenuTimeLimit15min",
+            "translateGameMenuTimeLimit30min",
+            "translateGameMenuTimeLimit45min",
+            "translateGameMenuTimeLimit1h",
+            "translateGameMenuTimeLimit15h",
 multi:
         "translateGameMenuTimeLimit"
     }
@@ -36,16 +36,16 @@ multi:
     enum comboResources
     {
         "translateGameMenuResourcesLow",
-        "translateGameMenuResourcesNormal",
-        "translateGameMenuResourcesHigh",
-        "translateGameMenuResourcesVeryHigh",
+            "translateGameMenuResourcesNormal",
+            "translateGameMenuResourcesHigh",
+            "translateGameMenuResourcesVeryHigh",
 multi:
         "translateGameMenuResources"
     }
     enum comboStartingUnits
     {
         "translateGameMenuStartingUnitsDefault",
-        "translateGameMenuStartingUnitsBuilderOnly",
+            "translateGameMenuStartingUnitsBuilderOnly",
 multi:
         "translateGameMenuStartingUnits"
     }
@@ -53,10 +53,10 @@ multi:
     enum comboUnitsLimit
     {
         "translateGameMenuUnitsLimitNoLimit",
-        "translateGameMenuUnitsLimit10000CR",
-        "translateGameMenuUnitsLimit20000CR",
-        "translateGameMenuUnitsLimit30000CR",
-        "translateGameMenuUnitsLimit50000CR",
+            "translateGameMenuUnitsLimit10000CR",
+            "translateGameMenuUnitsLimit20000CR",
+            "translateGameMenuUnitsLimit30000CR",
+            "translateGameMenuUnitsLimit50000CR",
 multi:
         "translateGameMenuUnitsLimit"
     }
@@ -74,12 +74,12 @@ multi:
         if(comboMoney==0) nStartingMoney=20000;
         if(comboMoney==1) nStartingMoney=30000;
         if(comboMoney==2) nStartingMoney=40000;
-                
+        
         nMoneyToEarn=25000;
         if(comboMoneyToEarn==1) nMoneyToEarn=40000;
         if(comboMoneyToEarn==2) nMoneyToEarn=50000;
         if(comboMoneyToEarn==3) nMoneyToEarn=75000;
-                if(comboMoneyToEarn==4) nMoneyToEarn=100000;
+        if(comboMoneyToEarn==4) nMoneyToEarn=100000;
         
         if(comboTime==0)nTimeLimit=0;
         if(comboTime==1)nTimeLimit=15*60*20;
@@ -96,32 +96,9 @@ multi:
         for(i=0;i<15;i=i+1)
         {
             rPlayer=GetPlayer(i);
-            if (rPlayer!=null)
-            {
-                if(rPlayer.GetRace()==raceUCS)
-                {
-                    rPlayer.EnableBuilding("UCSBLZ", false);
-                    rPlayer.EnableBuilding("UCSBTB", false);
-                }
-                if(rPlayer.GetRace()==raceED)
-                {
-                    rPlayer.EnableBuilding("EDBLZ", false);
-                    rPlayer.EnableBuilding("EDBTC", false);
-                }
-                if(rPlayer.GetRace()==raceLC)
-                {
-                    rPlayer.EnableBuilding("LCBLZ", false);
-                    rPlayer.EnableBuilding("LCBSR", false);
-                }
-            }
-        }
-
-        for(i=0;i<15;i=i+1)
-        {
-            rPlayer=GetPlayer(i);
             if(rPlayer!=null) 
             {
-                                rPlayer.SetAllowGiveMoney(false);
+                rPlayer.SetAllowGiveMoney(false);
                 rPlayer.SetMoney(nStartingMoney);
                 rPlayer.LookAt(rPlayer.GetStartingPointX(),rPlayer.GetStartingPointY(),6,0,20,0);
                 
@@ -188,7 +165,7 @@ multi:
                 }
                 else
                 {
-                                    rPlayer.Defeat();
+                    rPlayer.Defeat();
                 }
             }
         }
@@ -198,33 +175,33 @@ multi:
         }
         
         if(bOthersDefeat==true)
+        {
+            for(i=0;i<15;i=i+1)
+            {
+                rPlayer = GetPlayer(i);
+                if(rPlayer!=null && rPlayer.IsAlive()) 
                 {
-                    for(i=0;i<15;i=i+1)
+                    if(rPlayer.GetMoney()<nMoneyToEarn)
                     {
-                            rPlayer = GetPlayer(i);
-                            if(rPlayer!=null && rPlayer.IsAlive()) 
-                            {
-                                    if(rPlayer.GetMoney()<nMoneyToEarn)
-                                    {
-                                            rPlayer.Defeat();
-                                            KillArea(rPlayer.GetIFF(),GetRight()/2,GetBottom()/2,0,128);
-                                    }
-                            }
+                        rPlayer.Defeat();
+                        KillArea(rPlayer.GetIFF(),GetRight()/2,GetBottom()/2,0,128);
                     }
                 }
+            }
+        }
     }
     event Timer1()
     {
         int i;
-                int minLeft;
+        int minLeft;
         player rPlayer;
         
         if(nTimeLimit)
         {
-                        minLeft=(nTimeLimit - GetMissionTime())/1200;
-
-                        if(minLeft<0)minLeft=0;
-                        SetConsoleText("translateScriptTimeLeft",minLeft);
+            minLeft=(nTimeLimit - GetMissionTime())/1200;
+            
+            if(minLeft<0)minLeft=0;
+            SetConsoleText("translateScriptTimeLeft",minLeft);
             if(minLeft<1)
             {
                 for(i=0;i<15;i=i+1)
@@ -233,14 +210,14 @@ multi:
                     if(rPlayer!=null && rPlayer.IsAlive()) 
                     {
                         rPlayer.Defeat();
-                                                KillArea(rPlayer.GetIFF(),GetRight()/2,GetBottom()/2,0,128);
+                        KillArea(rPlayer.GetIFF(),GetRight()/2,GetBottom()/2,0,128);
                     }
                 }
-                                nTimeLimit=0;
+                nTimeLimit=0;
             }
         }
     }
-        
+    
     command Initialize()
     {
         nTimeLimit=0;

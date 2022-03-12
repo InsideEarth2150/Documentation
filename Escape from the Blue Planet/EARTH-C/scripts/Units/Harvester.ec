@@ -12,14 +12,13 @@ harvester "translateScriptNameHarvester"
     int m_nDestinationY;
     int m_nDestinationZ;
     int m_bValidDestination;
-        int m_nState;
-    int  m_nLandCounter;
+    int m_nState;
     
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -28,61 +27,12 @@ multi:
     state Nothing;
     state StartMoving;
     state Moving;
-    state StartLanding;
-    state Landing;
     state WaitForMovingToHarvestPoint;
     state MovingToHarvestPoint;
     state MovingToDestinationBuilding;
     state Harvesting;
     state PuttingResource;
     
-    function int Land()
-    {
-        if (!IsOnGround())
-        {
-            m_nMoveToX = GetLocationX();
-            m_nMoveToY = GetLocationY();
-            m_nMoveToZ = GetLocationZ();
-            if (!IsFreePoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ))
-            {
-                if (Rand(2))
-                {
-                    m_nMoveToX = m_nMoveToX + (Rand(m_nLandCounter) + 1);
-                }
-                else
-                {
-                    m_nMoveToX = m_nMoveToX - (Rand(m_nLandCounter) + 1);
-                }
-                if (Rand(2))
-                {
-                    m_nMoveToY = m_nMoveToY + (Rand(m_nLandCounter) + 1);
-                }
-                else
-                {
-                    m_nMoveToY = m_nMoveToY - (Rand(m_nLandCounter) + 1);
-                }
-                m_nLandCounter = m_nLandCounter + 1;
-                if (IsFreePoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ))
-                {
-                    CallMoveAndLandToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                }
-                else
-                {
-                    CallMoveLowToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                }
-            }
-            else
-            {
-                CallMoveAndLandToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-            }
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    //-------------------------------------------------------
     function int SetHarvestPoint(int nX, int nY, int nZ)
     {
         m_nHarvestX = nX;
@@ -138,37 +88,6 @@ multi:
             return Nothing;
         }
     }
-    state StartLanding
-    {
-        return Landing, 20;
-    }
-    //--------------------------------------------------------------------------
-    state Landing
-    {
-        if (IsMoving())
-        {
-            if ((GetLocationX() == m_nMoveToX) && (GetLocationY() == m_nMoveToY) && (GetLocationZ() == m_nMoveToZ) && 
-                !IsFreePoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ))
-            {
-                if (!Land())
-                {
-                    NextCommand(1);
-                    return Nothing;
-                }
-            }
-            return Landing;
-        }
-        else
-        {
-            if (!Land())
-            {
-                NextCommand(1);
-                return Nothing;
-            }
-            return Landing;
-        }
-    }
-    //--------------------------------------------------------------------------
     
     state WaitForMovingToHarvestPoint
     {
@@ -183,7 +102,7 @@ multi:
             return MovingToHarvestPoint,40;
         }
     }
-
+    
     state MovingToHarvestPoint
     {
         int nPosX;
@@ -460,54 +379,54 @@ multi:
         }
         else
         {
-                    
+            
             //!!wrocic do tego co robilismy
             if(m_nState==1)
-                        {
-                            CallMoveAndLandToPoint(m_nHarvestX, m_nHarvestY, m_nHarvestZ);
-                            state MovingToHarvestPoint;
-                        }
+            {
+                CallMoveAndLandToPoint(m_nHarvestX, m_nHarvestY, m_nHarvestZ);
+                state MovingToHarvestPoint;
+            }
             else 
-                        {
-                            if(m_nState==2)
-                            {
-                                CallMoveToPointForce(m_nDestinationX, m_nDestinationY, m_nDestinationZ);
-                                state MovingToDestinationBuilding;
-                            }
-                            else
-                            {
-                                if(m_nState==3)
-                                {
-                                    CallMoveToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                                    state StartMoving;
-                                }
-                                else
-                                    state Nothing;
-                            }
-                        }
+            {
+                if(m_nState==2)
+                {
+                    CallMoveToPointForce(m_nDestinationX, m_nDestinationY, m_nDestinationZ);
+                    state MovingToDestinationBuilding;
+                }
+                else
+                {
+                    if(m_nState==3)
+                    {
+                        CallMoveToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
+                        state StartMoving;
+                    }
+                    else
+                        state Nothing;
+                }
+            }
         }
     }
     
     event OnFreezeForSupplyOrRepair(int nFreezeTicks)
     {
-            if(state==WaitForMovingToHarvestPoint || 
-                state==PuttingResource || 
-                state==Harvesting)
-            {
-            }
-            else
-            {
-                m_nState=0;
-                if(state==MovingToHarvestPoint)
-                    m_nState=1;
-                if(state==MovingToDestinationBuilding)
-                    m_nState=2;
-                if(state==Moving)
-                    m_nState=3;
-        CallFreeze(nFreezeTicks);
-        state Froozen;
-            }
-      true;
+        if(state==WaitForMovingToHarvestPoint || 
+            state==PuttingResource || 
+            state==Harvesting)
+        {
+        }
+        else
+        {
+            m_nState=0;
+            if(state==MovingToHarvestPoint)
+                m_nState=1;
+            if(state==MovingToDestinationBuilding)
+                m_nState=2;
+            if(state==Moving)
+                m_nState=3;
+            CallFreeze(nFreezeTicks);
+            state Froozen;
+        }
+        true;
         true;
     }
     //------------------------------------------------------- 
@@ -620,22 +539,15 @@ multi:
         state StartMoving;
         true;
     }
-   //--------------------------------------------------------------------------
-        command Land() button "translateCommandLand" description "translateCommandLandDescription" hotkey priority 31 
+    //--------------------------------------------------------------------------
+    command Land() button "translateCommandLand" description "translateCommandLandDescription" hotkey priority 31 
     {
         if(state==Harvesting)return;
-                if(state==PuttingResource)return;
-        m_nLandCounter = 1;
-        if (Land())
-        {
-            state StartLanding;
-        }
-        else
-        {
-            NextCommand(1);
-        }
+        if(state==PuttingResource)return;
+        CallLand();
+        state Nothing;
     }
- 
+    
     //--------------------------------------------------------------------------
     command SetLights(int nMode) button lights description "translateCommandStateLightsModeDescription" hotkey priority 204
     {

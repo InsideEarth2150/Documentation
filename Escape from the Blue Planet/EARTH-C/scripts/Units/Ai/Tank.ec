@@ -23,8 +23,8 @@ tank "translateScriptNameTank"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -33,7 +33,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -111,27 +111,17 @@ multi:
         int i;
         int nTargetsCount;
         unit newTarget;
-        int nFindTarget;
         
         if(GetCannonType(0) != cannonTypeIon)
         {
-            nFindTarget = 0;
-            if (CanCannonFireToAircraft(-1))
+            if(!CanCannonFireToAircraft(-1))
             {
-                nFindTarget = findTargetFlyingUnit;
+                SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit ));
             }
-            if (CanCannonFireToGround(-1))
+            else
             {
-                if (GetCannonType(0) == cannonTypeEarthquake)
-                {
-                    nFindTarget = nFindTarget | findTargetBuildingUnit;
-                }
-                else
-                {
-                    nFindTarget = nFindTarget | findTargetNormalUnit | findTargetWaterUnit | findTargetBuildingUnit;
-                }
+                SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit | findTargetFlyingUnit));
             }
-            SetTarget(FindClosestEnemyUnitOrBuilding(nFindTarget));
             return true;
         }
         
@@ -457,7 +447,7 @@ multi:
         StopCannonFire(-1);
         SetCannonFireMode(-1, disableFire);
         SetTarget(null);
-                ClearAttacker();
+        ClearAttacker();
         m_uSpecialUnit = null;
         state Nothing;
     }
@@ -520,13 +510,13 @@ multi:
     //--------------------------------------------------------------------------
     command Attack(unit uTarget) hidden button "translateCommandAttack" description "translateCommandAttackDescription" hotkey priority 22
     {
-              if((CanCannonFireToAircraft(-1) || !uTarget.IsHelicopter()) && 
-                    (GetAmmoCount() || !CannonRequiresSupply(-1)))
-                {
-                    SetTarget(uTarget);
-                    SetCannonFireMode(-1, enableFire);
-                    state Attacking;
-                }
+        if((CanCannonFireToAircraft(-1) || !uTarget.IsHelicopter()) && 
+            (GetAmmoCount() || !CannonRequiresSupply(-1)))
+        {
+            SetTarget(uTarget);
+            SetCannonFireMode(-1, enableFire);
+            state Attacking;
+        }
     }
     
     /*komenda nie wystawiana na zewnatrz*/
@@ -576,19 +566,19 @@ multi:
     }
     
     //--------------------------------------------------------------------------
- /*   command UserOneParam9(int nMode) button traceMode priority 255
+    /*   command UserOneParam9(int nMode) button traceMode priority 255
     {
-            if (nMode == -1)
-            {
-            traceMode = (traceMode + 1) % 2;
-            }
-            else
-            {
-            assert(nMode == 0);
-            traceMode = nMode;
+    if (nMode == -1)
+    {
+    traceMode = (traceMode + 1) % 2;
+    }
+    else
+    {
+    assert(nMode == 0);
+    traceMode = nMode;
     }
     }
-   */ 
+    */ 
     
     //--------------------------------------------------------------------------
     /*button "Attack"

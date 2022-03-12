@@ -1,6 +1,6 @@
 player "translateAIPlayerHard"
 {
-        int nAttackMode;
+    int nAttackMode;
     state Initialize;
     state Nothing;
     
@@ -49,7 +49,7 @@ player "translateAIPlayerHard"
         if(!nAttackMode)
         {
             nAttackMode=1;
-            SetMaxAttackFrequency(10);
+            SetMaxAttackFrequency(20);
             return Nothing,200;
         }
         nAttackMode=0;

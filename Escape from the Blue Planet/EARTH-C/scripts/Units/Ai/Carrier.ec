@@ -14,8 +14,8 @@ carrier "translateScriptNameContainerTransporter"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }

@@ -20,8 +20,8 @@ builder "translateScriptNameConstructionVechicle"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -29,7 +29,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }

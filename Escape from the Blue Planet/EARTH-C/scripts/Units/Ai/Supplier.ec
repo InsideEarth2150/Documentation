@@ -3,8 +3,8 @@ supplier "translateScriptNameSupplyTransporter"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -12,7 +12,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -108,12 +108,12 @@ multi:
         if (IsMoving())
         {
             if(traceMode)TraceD("M -> SC                                                \n");
-                        nPosX = GetLocationX();
+            nPosX = GetLocationX();
             nPosY = GetLocationY();
             nPosZ = GetLocationZ();
             if ((nPosX == m_nMoveToX) && (nPosY == m_nMoveToY) && (nPosZ == m_nMoveToZ))//added 25.01.2000
-                            CallStopMoving();
-         
+                CallStopMoving();
+            
             return MovingToSupplyCenter;
         }
         else
@@ -132,7 +132,7 @@ multi:
             {
                 if(traceMode)TraceD("M -> SC Again                                                \n");
                 //CallMoveAndLandToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                                CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
+                CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
                 return MovingToSupplyCenter;
             }
         }
@@ -475,7 +475,7 @@ multi:
             m_nMoveToY = GetSupplyCenterLoadPositionY();
             m_nMoveToZ = GetSupplyCenterLoadPositionZ();
             //CallMoveAndLandToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                        CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
+            CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
             state MovingToSupplyCenter;
         }
         //komenda wewnetrzna z budynku wiec nie wolamy NextCommand

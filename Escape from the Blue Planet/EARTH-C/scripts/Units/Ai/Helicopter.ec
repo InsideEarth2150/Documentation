@@ -51,8 +51,8 @@ aircraft "translateScriptNameAircraft"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -60,7 +60,7 @@ multi:
     enum movementMode
     {
         "translateCommandStateFollowEnemy",
-        "translateCommandStateHoldPosition",
+            "translateCommandStateHoldPosition",
             
 multi:
         "translateCommandStateMovement"
@@ -69,7 +69,7 @@ multi:
     enum attackMode 
     {
         "translateCommandStateDynamicAttack",
-        "translateCommandStateStaticAttack",
+            "translateCommandStateStaticAttack",
 multi:
         "translateCommandStateAttackMode"
     }
@@ -77,7 +77,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -108,25 +108,14 @@ multi:
     //------------------------------------------------------- 
     function int FindBestTarget()
     {
-        int nFindTarget;
-
-        nFindTarget = 0;
-        if (CanCannonFireToAircraft(0))
+        if(!CanCannonFireToAircraft(0))
         {
-            nFindTarget = findTargetFlyingUnit;
+            SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit));
         }
-        if (CanCannonFireToGround(0))
+        else
         {
-            if (GetCannonType(0) == cannonTypeEarthquake)
-            {
-                nFindTarget = nFindTarget | findTargetBuildingUnit;
-            }
-            else
-            {
-                nFindTarget = nFindTarget | findTargetNormalUnit | findTargetWaterUnit | findTargetBuildingUnit;
-            }
+            SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit | findTargetFlyingUnit));
         }
-        SetTarget(FindClosestEnemyUnitOrBuilding(nFindTarget));
     }
     //------------------------------------------------------- 
     function int AttackRun(int bAttackOnPoint)
@@ -652,11 +641,11 @@ multi:
         if (IsMoving())
         {
             if ((GetLocationX() == m_nStayGx) && (GetLocationY() == m_nStayGy) && (GetLocationZ() == m_nStayLz))
-                        {
-                            CallStopMoving();
-                            return MovingForGetSupply,5;
-                        }
-
+            {
+                CallStopMoving();
+                return MovingForGetSupply,5;
+            }
+            
             return MovingForGetSupply;
         }
         else

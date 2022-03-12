@@ -8,7 +8,7 @@ mission "translateGameTypeUncleSam"
     
     enum comboMoney
     {
-            "translateScript10000CR",
+        "translateScript10000CR",
             "translateScript15000CR",
             "translateScript20000CR",
             "translateScript30000CR",
@@ -20,24 +20,24 @@ multi:
     
     enum comboCashRate
     {
-            "translateScript1000CR",
+        "translateScript1000CR",
             "translateScript2500CR",
             "translateScript5000CR",
             "translateScript10000CR",
             "translateScript15000CR",
             "translateScript20000CR",
 multi:
-      "translateGameMenuCashRate"
+        "translateGameMenuCashRate"
     }
     
     enum comboCashTime
     {
         
         "translateGameMenuRateFrequency1min",
-        "translateGameMenuRateFrequency3min",
-        "translateGameMenuRateFrequency5min",
-        "translateGameMenuRateFrequency10min",
-        "translateGameMenuRateFrequency15min",
+            "translateGameMenuRateFrequency3min",
+            "translateGameMenuRateFrequency5min",
+            "translateGameMenuRateFrequency10min",
+            "translateGameMenuRateFrequency15min",
             
 multi:
         "translateGameMenuRateFrequency"
@@ -45,7 +45,7 @@ multi:
     enum comboStartingUnits
     {
         "translateGameMenuStartingUnitsDefault",
-        "translateGameMenuStartingUnitsBuilderOnly",
+            "translateGameMenuStartingUnitsBuilderOnly",
 multi:
         "translateGameMenuStartingUnits"
     }
@@ -53,10 +53,10 @@ multi:
     enum comboUnitsLimit
     {
         "translateGameMenuUnitsLimitNoLimit",
-        "translateGameMenuUnitsLimit10000CR",
-        "translateGameMenuUnitsLimit20000CR",
-        "translateGameMenuUnitsLimit30000CR",
-        "translateGameMenuUnitsLimit50000CR",
+            "translateGameMenuUnitsLimit10000CR",
+            "translateGameMenuUnitsLimit20000CR",
+            "translateGameMenuUnitsLimit30000CR",
+            "translateGameMenuUnitsLimit50000CR",
 multi:
         "translateGameMenuUnitsLimit"
     }
@@ -64,7 +64,7 @@ multi:
     enum comboAlliedVictory
     {
         "translateGameMenuAlliedVictoryNo",
-        "translateGameMenuAlliedVictoryYes",
+            "translateGameMenuAlliedVictoryYes",
 multi:
         "translateGameMenuAlliedVictory"
     }
@@ -99,39 +99,16 @@ multi:
         if(comboCashTime==3)nCashTime=10*60*20;
         if(comboCashTime==4)nCashTime=15*60*20;
         
-        for(i=0;i<15;i=i+1)
-        {
-            rPlayer=GetPlayer(i);
-            if (rPlayer!=null)
-            {
-                if(rPlayer.GetRace()==raceUCS)
-                {
-                    rPlayer.EnableBuilding("UCSBLZ", false);
-                    rPlayer.EnableBuilding("UCSBTB", false);
-                }
-                if(rPlayer.GetRace()==raceED)
-                {
-                    rPlayer.EnableBuilding("EDBLZ", false);
-                    rPlayer.EnableBuilding("EDBTC", false);
-                }
-                if(rPlayer.GetRace()==raceLC)
-                {
-                    rPlayer.EnableBuilding("LCBLZ", false);
-                    rPlayer.EnableBuilding("LCBSR", false);
-                }
-            }
-        }
-
         bGameEnded=false;
         for(i=0;i<15;i=i+1)
         {
             rPlayer=GetPlayer(i);
-
+            
             if(rPlayer!=null) 
             {
-                                if(comboAlliedVictory)
-                                    rPlayer.EnableAIFeatures2(ai2BNSendResult,false);//nie wysylac rezultatow do EARTH NETu       
-            
+                if(comboAlliedVictory)
+                    rPlayer.EnableAIFeatures2(ai2BNSendResult,false);//nie wysylac rezultatow do EARTH NETu       
+                
                 rPlayer.SetMoney(nStartingMoney);
                 rPlayer.EnableAIFeatures(aiBuildMiningBuildings|aiBuildMiningUnits|aiControlMiningUnits,false);
                 rPlayer.LookAt(rPlayer.GetStartingPointX(),rPlayer.GetStartingPointY(),6,0,20,0);
@@ -149,14 +126,14 @@ multi:
                 rPlayer.EnableBuilding("EDBRE",false);
                 rPlayer.EnableBuilding("UCSBRF",false);
                 rPlayer.EnableBuilding("LCBMR",false);
-                                    
-                                rPlayer.EnableResearch("RES_UCS_UOH2",false);
-                                rPlayer.EnableResearch("RES_UCS_UOH3",false);
-                                rPlayer.EnableResearch("RES_UCS_UAH1",false);
-                                rPlayer.EnableResearch("RES_UCS_UAH2",false);
-                                rPlayer.EnableResearch("RES_UCS_UAH3",false);
-
-                        }
+                
+                rPlayer.EnableResearch("RES_UCS_UOH2",false);
+                rPlayer.EnableResearch("RES_UCS_UOH3",false);
+                rPlayer.EnableResearch("RES_UCS_UAH1",false);
+                rPlayer.EnableResearch("RES_UCS_UAH2",false);
+                rPlayer.EnableResearch("RES_UCS_UAH3",false);
+                
+            }
         }
         SetTimer(0,100);
         SetTimer(1,nCashTime);
@@ -275,8 +252,8 @@ multi:
             rPlayer=GetPlayer(i);
             if(rPlayer!=null) 
             {
-                            if(rPlayer.GetMoney()<100000)
-                rPlayer.AddMoney(nCashRate);
+                if(rPlayer.GetMoney()<100000)
+                    rPlayer.AddMoney(nCashRate);
             }
         }
     }
@@ -284,7 +261,7 @@ multi:
     command Initialize()
     {
         nCashRate = 5000;
-                comboCashRate = 2;
+        comboCashRate = 2;
         nCashTime = 60*20;
         comboStartingUnits=1;
         comboAlliedVictory=1;

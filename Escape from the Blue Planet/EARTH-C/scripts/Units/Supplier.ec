@@ -3,8 +3,8 @@ supplier "translateScriptNameSupplyTransporter"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -12,74 +12,24 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
     int m_nMoveToX;
     int m_nMoveToY;
     int m_nMoveToZ;
-    int  m_nLandCounter;
     
     state Initialize;
     state Nothing;
     state StartMoving;
     state Moving;
-    state StartLanding;
-    state Landing;
     state MovingToAssemblyPoint;
     state MovingToSupplyCenter;
     state MovingToObjectForSupply;
     state LoadingAmmo;
     state PuttingAmmo;
     
-    function int Land()
-    {
-        if (!IsOnGround())
-        {
-            m_nMoveToX = GetLocationX();
-            m_nMoveToY = GetLocationY();
-            m_nMoveToZ = GetLocationZ();
-            if (!IsFreePoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ))
-            {
-                if (Rand(2))
-                {
-                    m_nMoveToX = m_nMoveToX + (Rand(m_nLandCounter) + 1);
-                }
-                else
-                {
-                    m_nMoveToX = m_nMoveToX - (Rand(m_nLandCounter) + 1);
-                }
-                if (Rand(2))
-                {
-                    m_nMoveToY = m_nMoveToY + (Rand(m_nLandCounter) + 1);
-                }
-                else
-                {
-                    m_nMoveToY = m_nMoveToY - (Rand(m_nLandCounter) + 1);
-                }
-                m_nLandCounter = m_nLandCounter + 1;
-                if (IsFreePoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ))
-                {
-                    CallMoveAndLandToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                }
-                else
-                {
-                    CallMoveLowToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                }
-            }
-            else
-            {
-                CallMoveAndLandToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-            }
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    //-------------------------------------------------------
     state Initialize
     {
         return Nothing;
@@ -136,37 +86,6 @@ multi:
             return Nothing;
         }
     }
-    state StartLanding
-    {
-        return Landing, 20;
-    }
-    //--------------------------------------------------------------------------
-    state Landing
-    {
-        if (IsMoving())
-        {
-            if ((GetLocationX() == m_nMoveToX) && (GetLocationY() == m_nMoveToY) && (GetLocationZ() == m_nMoveToZ) && 
-                !IsFreePoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ))
-            {
-                if (!Land())
-                {
-                    NextCommand(1);
-                    return Nothing;
-                }
-            }
-            return Landing;
-        }
-        else
-        {
-            if (!Land())
-            {
-                NextCommand(1);
-                return Nothing;
-            }
-            return Landing;
-        }
-    }
-    //--------------------------------------------------------------------------
     
     state MovingToAssemblyPoint
     {
@@ -189,11 +108,11 @@ multi:
         if (IsMoving())
         {
             if(traceMode)TraceD("M -> SC                                                \n");
-                        nPosX = GetLocationX();
+            nPosX = GetLocationX();
             nPosY = GetLocationY();
             nPosZ = GetLocationZ();
             if ((nPosX == m_nMoveToX) && (nPosY == m_nMoveToY) && (nPosZ == m_nMoveToZ))//added 25.01.2000
-                            CallStopMoving();
+                CallStopMoving();
             return MovingToSupplyCenter;
         }
         else
@@ -212,7 +131,7 @@ multi:
             {
                 if(traceMode)TraceD("M -> SC Again                                                \n");
                 //CallMoveAndLandToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                                CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
+                CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
                 return MovingToSupplyCenter;
             }
         }
@@ -555,7 +474,7 @@ multi:
             m_nMoveToY = GetSupplyCenterLoadPositionY();
             m_nMoveToZ = GetSupplyCenterLoadPositionZ();
             //CallMoveAndLandToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                        CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
+            CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);//dodane 09.03.2000
             state MovingToSupplyCenter;
         }
         //komenda wewnetrzna z budynku wiec nie wolamy NextCommand
@@ -590,15 +509,8 @@ multi:
     }
     command Land() button "translateCommandLand" description "translateCommandLandDescription" hotkey priority 31 
     {
-        m_nLandCounter = 1;
-        if (Land())
-        {
-            state StartLanding;
-        }
-        else
-        {
-            NextCommand(1);
-        }
+        CallLand();
+        state Nothing;
     }
     
     //-------------------------------------------------------

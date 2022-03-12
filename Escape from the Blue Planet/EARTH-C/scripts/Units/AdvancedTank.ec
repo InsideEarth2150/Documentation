@@ -21,14 +21,14 @@ tank "translateScriptNameTankAdvanced"
     int  m_nSpecialLz;
     int  m_nSpecialCounter;
     int  m_nState;
-        int  bFirstShoot;
+    int  bFirstShoot;
     unit m_uSpecialUnit;
     
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -36,8 +36,8 @@ multi:
     enum movementMode
     {
         "translateCommandStateFollowEnemy",
-        "translateCommandStateHoldArea",
-        "translateCommandStateHoldPosition",
+            "translateCommandStateHoldArea",
+            "translateCommandStateHoldPosition",
             
 multi:
         "translateCommandStateMovement"
@@ -46,8 +46,8 @@ multi:
     enum attackMode
     {
         "translateCommandStateFireAtWill",
-        "translateCommandStateReturnfire",
-        "translateCommandStateHoldFire",
+            "translateCommandStateReturnfire",
+            "translateCommandStateHoldFire",
 multi:
         "translateCommandStateFireMode"
     }
@@ -55,7 +55,7 @@ multi:
     enum searchMode
     {
         "translateCommandStateNearestTarget",
-        "translateCommandStateWeakestTarget",
+            "translateCommandStateWeakestTarget",
 multi:
         "translateCommandStateTargeting"
     }
@@ -63,9 +63,9 @@ multi:
     enum retreatMode
     {
         "translateCommandStateNoRetreat",
-        "translateCommandStateRetreatNoAmmo",
-        "translateCommandStateRetreatHP50",
-        "translateCommandStateRetreatHP25",
+            "translateCommandStateRetreatNoAmmo",
+            "translateCommandStateRetreatHP50",
+            "translateCommandStateRetreatHP25",
 multi:
         "translateCommandStateRetreatMode"
     }
@@ -73,7 +73,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -224,39 +224,33 @@ multi:
         int i;
         int nTargetsCount;
         unit newTarget;
-        int nFindTarget;
         
         if(GetCannonType(0) != cannonTypeIon)
         {
-            nFindTarget = 0;
-            if (CanCannonFireToAircraft(-1))
+            if(!CanCannonFireToAircraft(-1))
             {
-                nFindTarget = findTargetFlyingUnit;
+                if(searchMode==1)//find weakest target
+                    SetTarget(FindTarget(findTargetWaterUnit|findTargetNormalUnit|findTargetBuildingUnit, findEnemyUnit, findWeakestUnit, findDestinationAnyUnit));
+                else //find closest target
+                    SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit));
+                
             }
-            if (CanCannonFireToGround(-1))
+            else
             {
-                if (GetCannonType(0) == cannonTypeEarthquake)
-                {
-                    nFindTarget = nFindTarget | findTargetBuildingUnit;
-                }
-                else
-                {
-                    nFindTarget = nFindTarget | findTargetNormalUnit | findTargetWaterUnit | findTargetBuildingUnit;
-                }
+                if(searchMode==1)//find weakest target
+                    SetTarget(FindTarget(findTargetAnyUnit, findEnemyUnit, findWeakestUnit, findDestinationAnyUnit));
+                else //find closest target
+                    SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit | findTargetFlyingUnit));
             }
-            if(searchMode==1)//find weakest target
-                SetTarget(FindTarget(nFindTarget, findEnemyUnit, findWeakestUnit, findDestinationAnyUnit));
-            else //find closest target
-                SetTarget(FindClosestEnemyUnitOrBuilding(nFindTarget));
-
+            
             if(m_uTarget!=null && 
                 movementMode==2 && 
                 (IsTargetInCannonRange(0, m_uTarget)!=inRangeGoodHit))
             {
                 if(!CanCannonFireToAircraft(-1))
-                    SetTarget(FindTarget(nFindTarget, findEnemyUnit, findNearestUnit, findDestinationAnyUnit));
+                    SetTarget(FindTarget(findTargetWaterUnit|findTargetNormalUnit|findTargetBuildingUnit, findEnemyUnit, findNearestUnit, findDestinationAnyUnit));
                 else
-                    SetTarget(FindTarget(nFindTarget, findEnemyUnit, findNearestUnit, findDestinationAnyUnit));
+                    SetTarget(FindTarget(findTargetAnyUnit, findEnemyUnit, findNearestUnit, findDestinationAnyUnit));
             }
             return true;
         }
@@ -502,7 +496,7 @@ multi:
     {
         if(traceMode)TraceD("A                                                \n");
         if (m_uTarget.IsLive() && 
-                    (GetCannonType(0) != cannonTypeIon || !m_uTarget.IsDisabled() || bFirstShoot))
+            (GetCannonType(0) != cannonTypeIon || !m_uTarget.IsDisabled() || bFirstShoot))
         {
             if(GoToTarget())
             {
@@ -510,15 +504,15 @@ multi:
             }
             else
             {
-                                bFirstShoot=false;
+                bFirstShoot=false;
                 CannonFireToTarget(-1, m_uTarget, -1);
-                                return Attacking;
+                return Attacking;
             }
         }
         else //target not exist or is disabled
         {
             SetTarget(null);
-                        StopCannonFire(-1);
+            StopCannonFire(-1);
             if (IsMoving())
             {
                 CallStopMoving();
@@ -747,8 +741,8 @@ multi:
                 return true;
             }
         }
-                if(attackMode!=0)//hold fire | return fire
-                    return true;
+        if(attackMode!=0)//hold fire | return fire
+            return true;
         return false;//gdyby zwrocic true to dzialko nie strzeli
     }
     //------------------------------------------------------- 
@@ -791,7 +785,7 @@ multi:
         SetCannonFireMode(-1, disableFire);
         SetTarget(null);
         m_uSpecialUnit = null;
-                ClearAttacker();
+        ClearAttacker();
         state Nothing;
     }
     
@@ -853,11 +847,11 @@ multi:
             assert(nMode == 0);
             attackMode = nMode;
         }
-                if(attackMode!=0)
-                {
-                    SetCannonFireMode(-1, disableFire);
-                    StopCannonFire(-1);
-                }
+        if(attackMode!=0)
+        {
+            SetCannonFireMode(-1, disableFire);
+            StopCannonFire(-1);
+        }
     }
     //--------------------------------------------------------------------------
     command UserOneParam1(int nMode) button searchMode description "translateCommandStateTargetingDescription" priority 8
@@ -901,20 +895,20 @@ multi:
         state Nothing;
     }
     //--------------------------------------------------------------------------
-        command HoldPosition() hidden button "translateCommandHoldPosition" description "translateCommandStopDescription" hotkey priority 20
-        {
-            SetTarget(null);
-            StopCannonFire(-1);
-            m_nStayGx = GetLocationX();
-            m_nStayGy = GetLocationY();
-            m_nStayLz = GetLocationZ();
-            if(IsMoving())
-                    CallStopMoving();
-            movementMode=2;
-            SetCannonFireMode(-1, disableFire);
-            ChangedCommandValue();
-            state Nothing;
-        }
+    command HoldPosition() hidden button "translateCommandHoldPosition" description "translateCommandStopDescription" hotkey priority 20
+    {
+        SetTarget(null);
+        StopCannonFire(-1);
+        m_nStayGx = GetLocationX();
+        m_nStayGy = GetLocationY();
+        m_nStayLz = GetLocationZ();
+        if(IsMoving())
+            CallStopMoving();
+        movementMode=2;
+        SetCannonFireMode(-1, disableFire);
+        ChangedCommandValue();
+        state Nothing;
+    }
     //--------------------------------------------------------------------------
     command Move(int nGx, int nGy, int nLz) button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21
     {
@@ -926,22 +920,22 @@ multi:
         CallMoveToPoint(nGx, nGy, nLz);
         state StartMoving;
     }
-        //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     command Attack(unit uTarget) button "translateCommandAttack" description "translateCommandAttackDescription" hotkey priority 22
     {
         SetTarget(uTarget);
-                bFirstShoot=true;
+        bFirstShoot=true;
         if(attackMode==0) SetCannonFireMode(-1, enableFire);
         AllowScriptWithdraw(true);
-                if(state==Froozen)
-                {
-                    m_nState = 2;
-                }
-                else
-                {
-                    
-                    state Attacking;
-                }
+        if(state==Froozen)
+        {
+            m_nState = 2;
+        }
+        else
+        {
+            
+            state Attacking;
+        }
     }
     
     /*komenda nie wystawiana na zewnatrz*/
@@ -951,16 +945,16 @@ multi:
         m_nTargetGx = nX;
         m_nTargetGy = nY;
         m_nTargetLz = nZ;
-              AllowScriptWithdraw(true);
-            SetCannonFireMode(-1, disableFire);
-                if(state==Froozen)
-                {
-                    m_nState = 1;
-                }
-                else
-                {
+        AllowScriptWithdraw(true);
+        SetCannonFireMode(-1, disableFire);
+        if(state==Froozen)
+        {
+            m_nState = 1;
+        }
+        else
+        {
             state AttackingPoint;
-                }
+        }
     }
     //--------------------------------------------------------------------------
     command UserNoParam0() button "translateCommandRetreat" description "translateCommandRetreatDescription" hotkey priority 25

@@ -11,8 +11,8 @@ sapper "translateScriptNameMiner"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -277,8 +277,8 @@ multi:
                 state MovingToMinePutPoint;
             }
         }
-                else
-                    NextCommand(0);
+        else
+            NextCommand(0);
         true;
     }
     

@@ -7,10 +7,10 @@ mission "translateGameTypeHarvestAndKill"
     
     enum comboMoney
     {
-              "translateScript20000CR",
-        "translateScript30000CR",
-        "translateScript40000CR",
-                "translateScript50000CR",
+        "translateScript20000CR",
+            "translateScript30000CR",
+            "translateScript40000CR",
+            "translateScript50000CR",
 multi:
         "translateGameMenuStartingMoney"
     }
@@ -18,52 +18,52 @@ multi:
     enum comboTime
     {
         "translateGameMenuTimeLimitNoLimit",
-        "translateGameMenuTimeLimit15min",
-        "translateGameMenuTimeLimit30min",
-        "translateGameMenuTimeLimit45min",
-        "translateGameMenuTimeLimit1h",
-        "translateGameMenuTimeLimit15h",
+            "translateGameMenuTimeLimit15min",
+            "translateGameMenuTimeLimit30min",
+            "translateGameMenuTimeLimit45min",
+            "translateGameMenuTimeLimit1h",
+            "translateGameMenuTimeLimit15h",
 multi:
         "translateGameMenuTimeLimit"
     }
-        /*enum comboTime
+    /*enum comboTime
     {
-        "translateGameMenuTimeLimit15min",
-        "translateGameMenuTimeLimit30min",
-        "translateGameMenuTimeLimit45min",
-multi:
-        "translateGameMenuTimeLimit"
-    }*/
+    "translateGameMenuTimeLimit15min",
+    "translateGameMenuTimeLimit30min",
+    "translateGameMenuTimeLimit45min",
+    multi:
+    "translateGameMenuTimeLimit"
+}*/
     enum comboResources
     {
         "translateGameMenuResourcesLow",
-        "translateGameMenuResourcesNormal",
-        "translateGameMenuResourcesHigh",
-        "translateGameMenuResourcesVeryHigh",
+            "translateGameMenuResourcesNormal",
+            "translateGameMenuResourcesHigh",
+            "translateGameMenuResourcesVeryHigh",
 multi:
         "translateGameMenuResources"
     }
     enum comboStartingUnits
     {
         "translateGameMenuStartingUnitsDefault",
-        "translateGameMenuStartingUnitsBuilderOnly",
+            "translateGameMenuStartingUnitsBuilderOnly",
 multi:
         "translateGameMenuStartingUnits"
     }
     enum comboUnitsLimit
     {
         "translateGameMenuUnitsLimitNoLimit",
-        "translateGameMenuUnitsLimit10000CR",
-        "translateGameMenuUnitsLimit20000CR",
-        "translateGameMenuUnitsLimit30000CR",
-        "translateGameMenuUnitsLimit50000CR",
+            "translateGameMenuUnitsLimit10000CR",
+            "translateGameMenuUnitsLimit20000CR",
+            "translateGameMenuUnitsLimit30000CR",
+            "translateGameMenuUnitsLimit50000CR",
 multi:
         "translateGameMenuUnitsLimit"
     }
     enum comboAlliedVictory
     {
         "translateGameMenuAlliedVictoryNo",
-        "translateGameMenuAlliedVictoryYes",
+            "translateGameMenuAlliedVictoryYes",
 multi:
         "translateGameMenuAlliedVictory"
     }
@@ -91,7 +91,7 @@ multi:
         if(comboTime==3)nTimeLimit=45*60*20;
         if(comboTime==4)nTimeLimit=60*60*20;
         if(comboTime==5)nTimeLimit=90*60*20;
-
+        
         /*nTimeLimit=15*60*20;
         if(comboTime==1)nTimeLimit=30*60*20;
         if(comboTime==2)nTimeLimit=45*60*20;*/
@@ -101,40 +101,17 @@ multi:
         if(comboResources==2) ResourcesPerContainer(4);
         if(comboResources==3) ResourcesPerContainer(2);
         
-        for(i=0;i<15;i=i+1)
-        {
-            rPlayer=GetPlayer(i);
-            if (rPlayer!=null)
-            {
-                if(rPlayer.GetRace()==raceUCS)
-                {
-                    rPlayer.EnableBuilding("UCSBLZ", false);
-                    rPlayer.EnableBuilding("UCSBTB", false);
-                }
-                if(rPlayer.GetRace()==raceED)
-                {
-                    rPlayer.EnableBuilding("EDBLZ", false);
-                    rPlayer.EnableBuilding("EDBTC", false);
-                }
-                if(rPlayer.GetRace()==raceLC)
-                {
-                    rPlayer.EnableBuilding("LCBLZ", false);
-                    rPlayer.EnableBuilding("LCBSR", false);
-                }
-            }
-        }
-
         bCheckBuilding=false;
         for(i=0;i<15;i=i+1)
         {
             rPlayer=GetPlayer(i);
             
-                              
+            
             if(rPlayer!=null) 
             {
-                                if(comboAlliedVictory)
-                                    rPlayer.EnableAIFeatures2(ai2BNSendResult,false);//nie wysylac rezultatow do EARTH NETu       
-            
+                if(comboAlliedVictory)
+                    rPlayer.EnableAIFeatures2(ai2BNSendResult,false);//nie wysylac rezultatow do EARTH NETu       
+                
                 if(comboUnitsLimit==0) rPlayer.EnableMilitaryUnitsLimit(false);
                 if(comboUnitsLimit==1) rPlayer.SetMilitaryUnitsLimit(10000);
                 if(comboUnitsLimit==2) rPlayer.SetMilitaryUnitsLimit(20000);
@@ -151,7 +128,7 @@ multi:
                 rPlayer.EnableResearch("RES_ED_WSL1",false);
                 rPlayer.EnableResearch("RES_ED_WSI1",false);
                 rPlayer.EnableResearch("RES_ED_WSR2",false);
-                                rPlayer.EnableResearch("RES_ED_ASR1",false);
+                rPlayer.EnableResearch("RES_ED_ASR1",false);
                 rPlayer.EnableResearch("RES_ED_WMR1",false);
                 rPlayer.EnableResearch("RES_ED_WHC1",false);
                 rPlayer.EnableResearch("RES_ED_WHI1",false);
@@ -374,16 +351,16 @@ multi:
     event Timer1()
     {
         int i;
-                int minLeft;
+        int minLeft;
         player rPlayer;
         
         bCheckBuilding=true;
         if(nTimeLimit)
         {
-                        minLeft=(nTimeLimit - GetMissionTime())/1200;
-
-                        if(minLeft<0)minLeft=0;
-                        SetConsoleText("translateScriptTimeLeft",minLeft);
+            minLeft=(nTimeLimit - GetMissionTime())/1200;
+            
+            if(minLeft<0)minLeft=0;
+            SetConsoleText("translateScriptTimeLeft",minLeft);
             if(minLeft<1)
             {
                 for(i=0;i<15;i=i+1)
@@ -392,11 +369,11 @@ multi:
                     if(rPlayer!=null && rPlayer.IsAlive()) 
                     {
                         rPlayer.Defeat();
-                                                KillArea(rPlayer.GetIFF(),GetRight()/2,GetBottom()/2,0,128);
+                        KillArea(rPlayer.GetIFF(),GetRight()/2,GetBottom()/2,0,128);
                     }
                 }
-                                AddBriefing("translateCampaignAccomplishedDemo");
-                                nTimeLimit=0;
+                AddBriefing("translateCampaignAccomplishedDemo");
+                nTimeLimit=0;
             }
         }
     }

@@ -43,8 +43,8 @@ repairer "translateScriptNameRepairer"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -52,7 +52,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }        
@@ -60,35 +60,35 @@ multi:
     enum repairMode
     {
         "translateCommandStateDontRepair",
-        "translateCommandStateAutoRepair",
+            "translateCommandStateAutoRepair",
 multi:
         "translateCommandStateRepairMode"
     }
     enum captureMode
     {
         "translateCommandStateDontCapture",
-        "translateCommandStateAutoCapture",
+            "translateCommandStateAutoCapture",
 multi:
         "translateCommandStateCaptureMode"
     }
     enum upgradeWeaponsMode
     {
         "translateCommandStateUpgradeWeapons",
-        "translateCommandStateDontUpgradeWeapons",
+            "translateCommandStateDontUpgradeWeapons",
 multi:
         "translateCommandStateUpgradeWeaponsMode"
     }
     enum upgradeChasisMode
     {
         "translateCommandStateUpgradeChasis",
-        "translateCommandStateDontUpgradeChasis",
+            "translateCommandStateDontUpgradeChasis",
 multi:
         "translateCommandStateUpgradeChasisMode"
     }
     enum upgradeShieldMode
     {
         "translateCommandStateUpgradeShield",
-        "translateCommandStateDontUpgradeShield",
+            "translateCommandStateDontUpgradeShield",
 multi:
         "translateCommandStateUpgradeShieldMode"
     }
@@ -118,25 +118,25 @@ multi:
             StartEnumTargetsArray();
             for(i=0;i<nTargetsCount;i=i+1)
             {
-                                if(traceMode)   TraceD(".");
+                if(traceMode)   TraceD(".");
                 newTarget = GetNextTarget();
-                                
+                
                 if(!newTarget.IsFroozen() && 
-                                    CanBeRepaired(newTarget))
-                                {
-                                    if(traceMode)   TraceD(":");
-                          m_nMoveToX = GetOperateOnTargetLocationX(newTarget);
-                      m_nMoveToY = GetOperateOnTargetLocationY(newTarget);
-                        m_nMoveToZ = GetOperateOnTargetLocationZ(newTarget);
-
-                                    if(IsGoodPointForOperateOnTarget(newTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))
-                                    {
-                                            if(traceMode)   TraceD("!");
-                                            EndEnumTargetsArray();
-                                            SetCurrentTarget(newTarget);
-                                            return true;
-                                    }
-                                }
+                    CanBeRepaired(newTarget))
+                {
+                    if(traceMode)   TraceD(":");
+                    m_nMoveToX = GetOperateOnTargetLocationX(newTarget);
+                    m_nMoveToY = GetOperateOnTargetLocationY(newTarget);
+                    m_nMoveToZ = GetOperateOnTargetLocationZ(newTarget);
+                    
+                    if(IsGoodPointForOperateOnTarget(newTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))
+                    {
+                        if(traceMode)   TraceD("!");
+                        EndEnumTargetsArray();
+                        SetCurrentTarget(newTarget);
+                        return true;
+                    }
+                }
             }
             EndEnumTargetsArray();
             return false;
@@ -165,18 +165,18 @@ multi:
             {
                 newTarget = GetNextTarget();
                 if(CanBeConverted(newTarget) && (DistanceTo(newTarget.GetLocationX(),newTarget.GetLocationY())<7))
-                                {
-                          m_nMoveToX = GetOperateOnTargetLocationX(newTarget);
-                      m_nMoveToY = GetOperateOnTargetLocationY(newTarget);
-                        m_nMoveToZ = GetOperateOnTargetLocationZ(newTarget);
-
-                                    if(IsGoodPointForOperateOnTarget(newTarget,GetOperateOnTargetLocationX(newTarget),GetOperateOnTargetLocationY(newTarget),GetOperateOnTargetLocationZ(newTarget)))
-                                    {
-                                            EndEnumTargetsArray();
-                                            SetCurrentTarget(newTarget);
-                                            return true;
-                                    }
-                                }
+                {
+                    m_nMoveToX = GetOperateOnTargetLocationX(newTarget);
+                    m_nMoveToY = GetOperateOnTargetLocationY(newTarget);
+                    m_nMoveToZ = GetOperateOnTargetLocationZ(newTarget);
+                    
+                    if(IsGoodPointForOperateOnTarget(newTarget,GetOperateOnTargetLocationX(newTarget),GetOperateOnTargetLocationY(newTarget),GetOperateOnTargetLocationZ(newTarget)))
+                    {
+                        EndEnumTargetsArray();
+                        SetCurrentTarget(newTarget);
+                        return true;
+                    }
+                }
             }
             EndEnumTargetsArray();
             return false;
@@ -210,28 +210,28 @@ multi:
     
     state Nothing
     {
-                if(traceMode)   TraceD("N");
-                
-                if(IsMoving())
-                {
-                    if(traceMode)   TraceD(" IsMoving                    \n");
-                    return Nothing;
-                }
-                if(InPlatoon())
+        if(traceMode)   TraceD("N");
+        
+        if(IsMoving())
         {
-                    m_nStayX = GetLocationX();
-                    m_nStayY = GetLocationY();
-                    m_nStayZ = GetLocationZ();
-                }
-                
+            if(traceMode)   TraceD(" IsMoving                    \n");
+            return Nothing;
+        }
+        if(InPlatoon())
+        {
+            m_nStayX = GetLocationX();
+            m_nStayY = GetLocationY();
+            m_nStayZ = GetLocationZ();
+        }
+        
         if(repairMode)
         {
             if(FindTargetToRepair())
             {
-                                
+                
                 m_nCurrOperation = operationRepair;
                 CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                                if(traceMode)   TraceD("-> MTT                           \n");
+                if(traceMode)   TraceD("-> MTT                           \n");
                 return MovingToTarget;
             }
         }
@@ -246,22 +246,22 @@ multi:
                 return MovingToTarget;
             }
         }
-                if(InPlatoon())
+        if(InPlatoon())
         {
-                    if(traceMode)   TraceD(" IP                          \n");
-                    return Nothing;    
+            if(traceMode)   TraceD(" IP                          \n");
+            return Nothing;    
         }
-                if(m_nStayX && (GetLocationX()!=m_nStayX || GetLocationY()!=m_nStayY ||GetLocationZ()!=m_nStayZ))
-                {
-                    if(traceMode)   TraceD("-> M                           \n");
-                    SetCurrentTarget(null);
-                    m_nMoveToX = m_nStayX;
-                    m_nMoveToY = m_nStayY;
-                    m_nMoveToZ = m_nStayZ;
-                CallMoveToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                    return StartMoving;
-                }
-                if(traceMode)   TraceD("                           \n");
+        if(m_nStayX && (GetLocationX()!=m_nStayX || GetLocationY()!=m_nStayY ||GetLocationZ()!=m_nStayZ))
+        {
+            if(traceMode)   TraceD("-> M                           \n");
+            SetCurrentTarget(null);
+            m_nMoveToX = m_nStayX;
+            m_nMoveToY = m_nStayY;
+            m_nMoveToZ = m_nStayZ;
+            CallMoveToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
+            return StartMoving;
+        }
+        if(traceMode)   TraceD("                           \n");
         return Nothing;
     }
     
@@ -289,40 +289,40 @@ multi:
         if (IsMoving())
         {
             //!!sprawdzanie czy cel jeszcze mozna naprawic/zdisablowac i czy sie ruszyl (wtedy trzeba zmienic kierunek jazdy)
-
-
+            
+            
             if (!m_uCurrTarget.IsFroozen() && 
-                                ((m_nCurrOperation == operationRepair) && CanBeRepaired(m_uCurrTarget)) || 
+                ((m_nCurrOperation == operationRepair) && CanBeRepaired(m_uCurrTarget)) || 
                 ((m_nCurrOperation == operationCapture) && CanBeConverted(m_uCurrTarget)) ||
                 ((m_nCurrOperation == operationRepaint) && CanBeRepainted(m_uCurrTarget)) ||
                 ((m_nCurrOperation == operationUpgrade) && CanBeUpgraded(m_uCurrTarget)))
             {
-                                if(!IsGoodPointForOperateOnTarget(m_uCurrTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))            
-                                {//target has moved
-                                        m_nMoveToX = GetOperateOnTargetLocationX(m_uCurrTarget);
-                                        m_nMoveToY = GetOperateOnTargetLocationY(m_uCurrTarget);
-                                        m_nMoveToZ = GetOperateOnTargetLocationZ(m_uCurrTarget);
-                                        if(IsGoodPointForOperateOnTarget(m_uCurrTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))            
-                                        {
-                                            CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                                            return MovingToTarget;
-                                        }
-                                        else
-                                        {//unable to find operation point for target
-                                            m_nCurrOperation = operationRepair;
-                                            CallStopMoving();
-                                            SetCurrentTarget(null);
-                                            NextCommand(1);
-                                            return Nothing;
-                                        }
-                                }
+                if(!IsGoodPointForOperateOnTarget(m_uCurrTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))            
+                {//target has moved
+                    m_nMoveToX = GetOperateOnTargetLocationX(m_uCurrTarget);
+                    m_nMoveToY = GetOperateOnTargetLocationY(m_uCurrTarget);
+                    m_nMoveToZ = GetOperateOnTargetLocationZ(m_uCurrTarget);
+                    if(IsGoodPointForOperateOnTarget(m_uCurrTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))            
+                    {
+                        CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
+                        return MovingToTarget;
+                    }
+                    else
+                    {//unable to find operation point for target
+                        m_nCurrOperation = operationRepair;
+                        CallStopMoving();
+                        SetCurrentTarget(null);
+                        NextCommand(1);
+                        return Nothing;
+                    }
+                }
             }
             else
             {
                 m_nCurrOperation = operationRepair;
                 CallStopMoving();
                 SetCurrentTarget(null);
-                                NextCommand(1);
+                NextCommand(1);
                 return Nothing;
             }
             return MovingToTarget;
@@ -395,19 +395,19 @@ multi:
                 m_nMoveToX = GetOperateOnTargetLocationX(m_uCurrTarget);
                 m_nMoveToY = GetOperateOnTargetLocationY(m_uCurrTarget);
                 m_nMoveToZ = GetOperateOnTargetLocationZ(m_uCurrTarget);
-                                if(IsGoodPointForOperateOnTarget(m_uCurrTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))            
-                                {
-                                            CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                                            return MovingToTarget;
-                                }
-                                else
-                                {//unable to find operation point for target
-                                    m_nCurrOperation = operationRepair;
-                                    CallStopMoving();
-                                    SetCurrentTarget(null);
-                                    NextCommand(1);
-                                    return Nothing;
-                                }
+                if(IsGoodPointForOperateOnTarget(m_uCurrTarget,m_nMoveToX,m_nMoveToY,m_nMoveToZ))            
+                {
+                    CallMoveToPointForce(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
+                    return MovingToTarget;
+                }
+                else
+                {//unable to find operation point for target
+                    m_nCurrOperation = operationRepair;
+                    CallStopMoving();
+                    SetCurrentTarget(null);
+                    NextCommand(1);
+                    return Nothing;
+                }
             }
             /*
             }
@@ -626,7 +626,7 @@ multi:
         true;
     }
     //-------------------------------------------------------
-    command Repaint(unit uTarget) hidden button "translateCommandRepaint" description "translateCommandRepaintDescription" hotkey priority 100
+    command Repaint(unit uTarget) button "translateCommandRepaint" description "translateCommandRepaintDescription" hotkey priority 100
     {
         if (CanBeRepainted(uTarget))
         {
@@ -645,7 +645,7 @@ multi:
         true;
     }
     //-------------------------------------------------------
-    command Upgrade(unit uTarget) hidden button "translateCommandUpgrade" description "translateCommandUpgradeDescription" hotkey priority 99
+    command Upgrade(unit uTarget) button "translateCommandUpgrade" description "translateCommandUpgradeDescription" hotkey priority 99
     {
         if (CanBeUpgraded(uTarget))
         {
@@ -720,21 +720,21 @@ multi:
         true;
     }
     //-------------------------------------------------------
-    command SpecialSetRepaintSideColorDialog() hidden button "translateCommandSetColor" description "translateCommandSetColorDescription" hotkey priority 101
+    command SpecialSetRepaintSideColorDialog() button "translateCommandSetColor" description "translateCommandSetColorDescription" hotkey priority 101
     {
         //specjalna komenda obslugiwana przez dialog
     }
     //-------------------------------------------------------
-    command Move(int nGx, int nGy, int nLz) hidden button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21
+    command Move(int nGx, int nGy, int nLz) button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21
     {
         SetCurrentTarget(null);
         m_nMoveToX = nGx;
         m_nMoveToY = nGy;
         m_nMoveToZ = nLz;
-                m_nStayX = nGx;
-                m_nStayY = nGy;
-                m_nStayZ = nLz;
-    
+        m_nStayX = nGx;
+        m_nStayY = nGy;
+        m_nStayZ = nLz;
+        
         CallMoveToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
         state StartMoving;
         true;
@@ -751,7 +751,7 @@ multi:
         true;
     }
     //-------------------------------------------------------
-    command Stop() hidden button "translateCommandStop" description "translateCommandStopDescription" hotkey priority 20
+    command Stop() button "translateCommandStop" description "translateCommandStopDescription" hotkey priority 20
     {
         SetCurrentTarget(null);
         CallStopMoving();
@@ -760,7 +760,7 @@ multi:
     }
     
     //-------------------------------------------------------
-    command SetRepairMode(int nMode) hidden button repairMode description "translateCommandStateRepairModeDescription"priority 190
+    command UserOneParam0(int nMode) button repairMode description "translateCommandStateRepairModeDescription"priority 190
     {
         if (nMode == -1)
         {
@@ -772,7 +772,7 @@ multi:
             repairMode = nMode;
         }
     }
-    command SetConvertMode(int nMode) hidden button captureMode description "translateCommandStateCaptureModeDescription" priority 190
+    command UserOneParam1(int nMode) button captureMode description "translateCommandStateCaptureModeDescription" priority 190
     {
         if (nMode == -1)
         {
@@ -786,7 +786,7 @@ multi:
     }
     
     //-------------------------------------------------------
-    command SetLights(int nMode) hidden button lights description "translateCommandStateLightsModeDescription" hotkey priority 204
+    command SetLights(int nMode) button lights description "translateCommandStateLightsModeDescription" hotkey priority 204
     {
         if (nMode == -1)
         {
@@ -805,17 +805,17 @@ multi:
         //special command - no implementation
     }
     //--------------------------------------------------------------------------
-/*    command UserOneParam9(int nMode) button traceMode priority 255
+    /*    command UserOneParam9(int nMode) button traceMode priority 255
     {
-                if (nMode == -1)
-                {
-                        traceMode = (traceMode + 1) % 2;
-                }
-                else
-                {
-                        assert(nMode == 0);
-                        traceMode = nMode;
-                }
+    if (nMode == -1)
+    {
+    traceMode = (traceMode + 1) % 2;
+    }
+    else
+    {
+    assert(nMode == 0);
+    traceMode = nMode;
+    }
     }*/
     
 }

@@ -9,15 +9,14 @@ civil "translateScriptNameUnarmedVechicle"
     int  m_nSpecialGy;
     int  m_nSpecialLz;
     int  m_nSpecialCounter;
-        int  m_nState;
     unit m_uSpecialUnit;
     
     
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -25,7 +24,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -169,46 +168,28 @@ multi:
     //------------------------------------------------------- 
     state Froozen
     {
-        if (IsFroozen() || IsMoving())
+        if (IsFroozen())
         {
             state Froozen;
         }
         else
         {
             //!!wrocic do tego co robilismy
-           
-            
-            if(m_nState==3)
-            {
-                CallMoveToPoint(m_nStayGx, m_nStayGy, m_nStayLz);
-                return Moving;
-            }
-            
-            if(m_nState==4)
-                return Patrol;
-            
-            if(m_nState==5)
-                return Escort;
-            
             state Nothing;
         }
     }
     
     //********************************************************
-    //*********** E V E N T S ********************************
+    //*********** E V E N T S ****************************
     //********************************************************
     //zwracaja true
     //false jak nie ma 
     event OnHit()
     {
-
         if((GetHP()*2)<=GetMaxHP())
         {
-         if(state==Nothing)
-         {
             m_nSpecialCounter=0;
             state Retreat;
-         }
         }
         true;
     }
@@ -235,15 +216,9 @@ multi:
     //------------------------------------------------------- 
     event OnFreezeForSupplyOrRepair(int nFreezeTicks)
     {
-              if(state!=Froozen) m_nState = 0;
-        if((state==Moving) || (state==StartMoving))
-            m_nState=3;
-        if(state==Patrol)
-            m_nState=4;
-        if(state==Escort)
-            m_nState=5;
         CallFreeze(nFreezeTicks);
         state Froozen;
+        true;
     }
     //------------------------------------------------------- 
     event OnTransportedToNewWorld()
@@ -267,7 +242,7 @@ multi:
         m_uSpecialUnit = null;
     }
     //--------------------------------------------------------------------------
-    command SetLights(int nMode) button lights priority 204
+    command SetLights(int nMode) button lights description "translateCommandStateLightsModeDescription" hotkey priority 204
     {
         if (nMode == -1)
         {
@@ -293,22 +268,10 @@ multi:
     }
     
     //--------------------------------------------------------------------------
-    command Move(int nGx, int nGy, int nLz) button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21
+    command Move(int nGx, int nGy, int nLz) hidden button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21
     {
-        m_nStayGx = nGx;
-        m_nStayGy = nGy;
-        m_nStayLz = nLz;
-                
-                if(state==Froozen)
-                {
-                    m_nState = 3;
-                }
-                else
-                {
-                    CallMoveToPoint(nGx, nGy, nLz);
-                    state StartMoving;
-                }
-        
+        CallMoveToPoint(nGx, nGy, nLz);
+        state StartMoving;
     }
     //--------------------------------------------------------------------------
     command UserNoParam0() button "translateCommandRetreat" description "translateCommandRetreatDescription" hotkey priority 25

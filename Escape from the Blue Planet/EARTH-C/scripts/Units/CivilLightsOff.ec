@@ -14,8 +14,8 @@ civil "translateScriptNameUnarmedVechicleLightsOff"
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -23,7 +23,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -233,9 +233,9 @@ multi:
         m_nStayGy = GetLocationY();
         m_nStayLz = GetLocationZ();
         traceMode = 0;
-                lights=2;
-                SetLightsMode(lights);
-
+        lights=2;
+        SetLightsMode(lights);
+        
     }
     //--------------------------------------------------------------------------
     command Uninitialize()

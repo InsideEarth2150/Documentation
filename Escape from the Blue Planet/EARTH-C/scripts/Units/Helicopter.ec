@@ -47,14 +47,13 @@ aircraft "translateScriptNameAircraft"
     int  m_nState;
     int  m_bNeedReload;
     int  m_bNeedStop;
-    int  m_nLandCounter;
     
     
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -62,7 +61,7 @@ multi:
     enum movementMode
     {
         "translateCommandStateFollowEnemy",
-        "translateCommandStateHoldPosition",
+            "translateCommandStateHoldPosition",
             
 multi:
         "translateCommandStateMovement"
@@ -71,7 +70,7 @@ multi:
     enum attackMode 
     {
         "translateCommandStateDynamicAttack",
-        "translateCommandStateStaticAttack",
+            "translateCommandStateStaticAttack",
 multi:
         "translateCommandStateAttackMode"
     }
@@ -79,7 +78,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -88,9 +87,7 @@ multi:
     state HoldPosition;
     state StartMoving;
     state Moving;
-    state StartLanding;
-    state Landing;
-        state MovingAfterReload;
+    state MovingAfterReload;
     state AutoAttacking;
     state Attacking;
     state AttackingPoint;
@@ -104,62 +101,6 @@ multi:
     //********* F U N C T I O N S ****************************
     //********************************************************
     //-------------------------------------------------------
-    function int Land()
-    {
-        if (!IsOnGround())
-        {
-            if ((m_nLandCounter == 1) && HaveCannonsMissingAmmo() && FindArtefact(artefactRegenerateExternalAmmo))
-            {
-                m_nStayGx = GetFoundArtefactX();
-                m_nStayGy = GetFoundArtefactY();
-                m_nStayLz = GetFoundArtefactZ();
-            }
-            else
-            {
-                m_nStayGx = GetLocationX();
-                m_nStayGy = GetLocationY();
-                m_nStayLz = GetLocationZ();
-            }
-            if (!IsFreePoint(m_nStayGx, m_nStayGy, m_nStayLz))
-            {
-                if (Rand(2))
-                {
-                    m_nStayGx = m_nStayGx + (Rand(m_nLandCounter) + 1);
-                }
-                else
-                {
-                    m_nStayGx = m_nStayGx - (Rand(m_nLandCounter) + 1);
-                }
-                if (Rand(2))
-                {
-                    m_nStayGy = m_nStayGy + (Rand(m_nLandCounter) + 1);
-                }
-                else
-                {
-                    m_nStayGy = m_nStayGy - (Rand(m_nLandCounter) + 1);
-                }
-                m_nLandCounter = m_nLandCounter + 1;
-                if (IsFreePoint(m_nStayGx, m_nStayGy, m_nStayLz))
-                {
-                    CallMoveAndLandToPoint(m_nStayGx, m_nStayGy, m_nStayLz);
-                }
-                else
-                {
-                    CallMoveLowToPoint(m_nStayGx, m_nStayGy, m_nStayLz);
-                }
-            }
-            else
-            {
-                CallMoveAndLandToPoint(m_nStayGx, m_nStayGy, m_nStayLz);
-            }
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    //-------------------------------------------------------
     function int SetTarget(unit uTarget)
     {
         m_uTarget = uTarget;
@@ -169,25 +110,14 @@ multi:
     //------------------------------------------------------- 
     function int FindBestTarget()
     {
-        int nFindTarget;
-
-        nFindTarget = 0;
-        if (CanCannonFireToAircraft(0))
+        if(!CanCannonFireToAircraft(0))
         {
-            nFindTarget = findTargetFlyingUnit;
+            SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit));
         }
-        if (CanCannonFireToGround(0))
+        else
         {
-            if (GetCannonType(0) == cannonTypeEarthquake)
-            {
-                nFindTarget = nFindTarget | findTargetBuildingUnit;
-            }
-            else
-            {
-                nFindTarget = nFindTarget | findTargetNormalUnit | findTargetWaterUnit | findTargetBuildingUnit;
-            }
+            SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit | findTargetFlyingUnit));
         }
-        SetTarget(FindClosestEnemyUnitOrBuilding(nFindTarget));
     }
     //------------------------------------------------------- 
     function int AttackRun(int bAttackOnPoint)
@@ -410,7 +340,7 @@ multi:
     //-------------------------------------------------------
     function int CheckAmmo()
     {
-
+        
         if(CannonRequiresSupply(0) && (m_bNeedReload || !GetAmmoCount()) && FindSupplyCenterPlace())
         {
             m_nState=0;
@@ -428,7 +358,7 @@ multi:
             m_nStayGy = GetFoundSupplyCenterPlaceY();
             m_nStayLz = GetFoundSupplyCenterPlaceZ();
             //CallMoveAndLandToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);
-                        CallMoveToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);//dodane 25.01.2000
+            CallMoveToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);//dodane 25.01.2000
             return true;
         }
         return false;
@@ -628,37 +558,6 @@ multi:
         }
     }
     //--------------------------------------------------------------------------
-    state StartLanding
-    {
-        return Landing, 20;
-    }
-    //--------------------------------------------------------------------------
-    state Landing
-    {
-        if (IsMoving())
-        {
-            if ((GetLocationX() == m_nStayGx) && (GetLocationY() == m_nStayGy) && (GetLocationZ() == m_nStayLz) && 
-                !IsFreePoint(m_nStayGx, m_nStayGy, m_nStayLz))
-            {
-                if (!Land())
-                {
-                    NextCommand(1);
-                    return Nothing;
-                }
-            }
-            return Landing;
-        }
-        else
-        {
-            if (!Land())
-            {
-                NextCommand(1);
-                return Nothing;
-            }
-            return Landing;
-        }
-    }
-    //--------------------------------------------------------------------------
     state Patrol
     {
         if(CheckAmmo())return MovingForGetSupply;
@@ -779,19 +678,19 @@ multi:
         if (IsMoving())
         {
             if(traceMode)   TraceD("MovingForSupply                                                \n");
-                        if ((GetLocationX() == m_nStayGx) && (GetLocationY() == m_nStayGy) && (GetLocationZ() == m_nStayLz))
-                        {
-                            if(traceMode)   TraceD("MovingForSupply CallStopMoving                                           \n");
-                            CallStopMoving();
-                            return MovingForGetSupply,5;
-                        }
-                        return MovingForGetSupply;
+            if ((GetLocationX() == m_nStayGx) && (GetLocationY() == m_nStayGy) && (GetLocationZ() == m_nStayLz))
+            {
+                if(traceMode)   TraceD("MovingForSupply CallStopMoving                                           \n");
+                CallStopMoving();
+                return MovingForGetSupply,5;
+            }
+            return MovingForGetSupply;
         }
         else
         {
             if ((GetLocationX() == m_nStayGx) && (GetLocationY() == m_nStayGy) && (GetLocationZ() == m_nStayLz))
             {
-                                if(traceMode) TraceD("MovingForSupply -> GettingSupply                                           \n");
+                if(traceMode) TraceD("MovingForSupply -> GettingSupply                                           \n");
                 CallGetFlyingSupply();
                 return GettingSupply;
             }
@@ -799,7 +698,7 @@ multi:
             {
                 if(traceMode)   TraceD("MovingForSupply again                                               \n");
                 //CallMoveAndLandToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);
-                                CallMoveToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);//dodane 25.01.2000
+                CallMoveToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);//dodane 25.01.2000
                 return MovingForGetSupply;
             }
         }
@@ -814,15 +713,15 @@ multi:
         }
         else
         {
-                      if(traceMode) TraceD("End GettingSupply                                           \n");
+            if(traceMode) TraceD("End GettingSupply                                           \n");
             m_bNeedReload=false;
             if(m_nSpecialGx==GetLocationX() && m_nSpecialGy==GetLocationY()) m_nSpecialGx=m_nSpecialGx+5;
-                        if(!GetAmmoCount())
-                        {
-                            m_nSpecialGx=GetLocationX()-5; 
-                            m_nSpecialGy=GetLocationY();
-                        }
-                        if(!m_nSpecialGx){m_nSpecialGx=GetLocationX()+5;m_nSpecialGy=GetLocationY();}
+            if(!GetAmmoCount())
+            {
+                m_nSpecialGx=GetLocationX()-5; 
+                m_nSpecialGy=GetLocationY();
+            }
+            if(!m_nSpecialGx){m_nSpecialGx=GetLocationX()+5;m_nSpecialGy=GetLocationY();}
             CallMoveToPoint(m_nSpecialGx,m_nSpecialGy,0);
             return MovingAfterReload;
             
@@ -839,7 +738,7 @@ multi:
         }
         else
         {
-                        if(m_nState==1)
+            if(m_nState==1)
                 return AttackingPoint,40;
             
             if(m_nState==2)
@@ -915,9 +814,9 @@ multi:
         SetCannonFireMode(-1, disableFire);
         m_nAttackGx=-1;
         if(!GetAmmoCount()) 
-                    m_bNeedReload=true;
-                else 
-                    m_bNeedReload=false;
+            m_bNeedReload=true;
+        else 
+            m_bNeedReload=false;
     }
     //--------------------------------------------------------------------------
     command Uninitialize()
@@ -986,17 +885,17 @@ multi:
     //--------------------------------------------------------------------------
     command HoldPosition() hidden button "translateCommandHoldPosition" description "translateCommandHoldPositionDescription" hotkey priority 20
     {
-            SetTarget(null);
-            StopCannonFire(-1);
-            if(state==GettingSupply && IsOnWorkingSupplyCenter()) return;
-            m_nStayGx = GetLocationX();
-            m_nStayGy = GetLocationY();
-            m_nStayLz = GetLocationZ();
-            movementMode = 1;
-            if(IsMoving())
+        SetTarget(null);
+        StopCannonFire(-1);
+        if(state==GettingSupply && IsOnWorkingSupplyCenter()) return;
+        m_nStayGx = GetLocationX();
+        m_nStayGy = GetLocationY();
+        m_nStayLz = GetLocationZ();
+        movementMode = 1;
+        if(IsMoving())
             CallStopMoving();
-            ChangedCommandValue();
-            state HoldPosition;
+        ChangedCommandValue();
+        state HoldPosition;
     }
     
     //--------------------------------------------------------------------------
@@ -1066,7 +965,7 @@ multi:
     //--------------------------------------------------------------------------
     command Enter(unit uEntrance) hidden button "translateCommandEnter"
     {
-                if(state==GettingSupply && IsOnWorkingSupplyCenter()) return;
+        if(state==GettingSupply && IsOnWorkingSupplyCenter()) return;
         CallMoveInsideObject(uEntrance);
         m_nTargetGx = GetEntranceX(uEntrance);
         m_nTargetGy = GetEntranceY(uEntrance);
@@ -1075,7 +974,7 @@ multi:
     }
     
     //--------------------------------------------------------------------------
- /*   command UserOneParam9(int nMode) button traceMode priority 255
+    /*   command UserOneParam9(int nMode) button traceMode priority 255
     {
     if (nMode == -1)
     {
@@ -1092,15 +991,8 @@ multi:
     command Land() button "translateCommandLand" description "translateCommandLandDescription" hotkey priority 31 
     {
         if(state==GettingSupply && IsOnWorkingSupplyCenter()) return;
-        m_nLandCounter = 1;
-        if (Land())
-        {
-            state StartLanding;
-        }
-        else
-        {
-            NextCommand(1);
-        }
+        CallLand();
+        state Nothing;
     }
     
     command FlyForSupply() button "translateCommandGetSupply" description "translateCommandGetSupplyDescription" hotkey priority 50 
@@ -1117,7 +1009,7 @@ multi:
                 m_nStayGy = GetFoundSupplyCenterPlaceY();
                 m_nStayLz = GetFoundSupplyCenterPlaceZ();
                 //CallMoveAndLandToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);//jak bylo Force to stawaly w slupku
-                                CallMoveToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);//dodane 25.01.2000
+                CallMoveToPointForce(m_nStayGx, m_nStayGy, m_nStayLz);//dodane 25.01.2000
                 state MovingForGetSupply;
             }
             else

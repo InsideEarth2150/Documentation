@@ -11,12 +11,12 @@ carrier "translateScriptNameContainerTransporter"
     int  m_nContainerZ;
     int  m_nGetContainerFrom;//0 - mine, 1 - single container
     int  m_nState;
-
+    
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -395,49 +395,49 @@ multi:
         else
         {
             //!!wrocic do tego co robilismy
-                      if(m_nState==1)
-                        {
-                            CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
-                            state MovingToContainerDestination;
-                        }
+            if(m_nState==1)
+            {
+                CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
+                state MovingToContainerDestination;
+            }
             else 
-                        {
-                            if(m_nState==2)
-                            {
-                                CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
-                                state MovingToContainerSource;
-                            }
-                            else
-                            {
-                                if(m_nState==3)
-                                {
-                                    CallMoveToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
-                                    state StartMoving;
-                                }
-                                else
-                                    state Nothing;
-                            }
-                        }
+            {
+                if(m_nState==2)
+                {
+                    CallMoveToPointForce(m_nCurrPutGetX, m_nCurrPutGetY, m_nCurrPutGetZ);
+                    state MovingToContainerSource;
+                }
+                else
+                {
+                    if(m_nState==3)
+                    {
+                        CallMoveToPoint(m_nMoveToX, m_nMoveToY, m_nMoveToZ);
+                        state StartMoving;
+                    }
+                    else
+                        state Nothing;
+                }
+            }
         }
     }
     event OnFreezeForSupplyOrRepair(int nFreezeTicks)
     {
-            if(state==GettingContainer || state==PuttingContainer)
-            {
-            }
-            else
-            {
-                m_nState=0;
-                if(state==MovingToContainerDestination)
-                    m_nState=1;
-                if(state==MovingToContainerSource)
-                    m_nState=2;
-                if(state==Moving)
-                    m_nState=3;
-        CallFreeze(nFreezeTicks);
-        state Froozen;
-            }
-      true;
+        if(state==GettingContainer || state==PuttingContainer)
+        {
+        }
+        else
+        {
+            m_nState=0;
+            if(state==MovingToContainerDestination)
+                m_nState=1;
+            if(state==MovingToContainerSource)
+                m_nState=2;
+            if(state==Moving)
+                m_nState=3;
+            CallFreeze(nFreezeTicks);
+            state Froozen;
+        }
+        true;
     }
     //------------------------------------------------------- 
     

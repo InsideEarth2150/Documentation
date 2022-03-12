@@ -22,13 +22,13 @@ tank "translateScriptNameTankStatic"
     int  m_nSpecialCounter;
     int  m_nState;
     unit m_uSpecialUnit;
-        int  bFirstShoot;
+    int  bFirstShoot;
     
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -36,7 +36,7 @@ multi:
     enum movementMode
     {
         "translateCommandStateFollowEnemy",
-        "translateCommandStateHoldPosition",
+            "translateCommandStateHoldPosition",
             
 multi:
         "translateCommandStateMovement"
@@ -45,7 +45,7 @@ multi:
     enum traceMode
     {
         "translateCommandStateTraceOFF",
-        "translateCommandStateTraceON",
+            "translateCommandStateTraceON",
 multi:
         "translateCommandStateTraceMode"
     }
@@ -267,33 +267,30 @@ multi:
         int i;
         int nTargetsCount;
         unit newTarget;
-        int nFindTarget;
         
         if(GetCannonType(0) != cannonTypeIon)
         {
-            nFindTarget = 0;
-            if (CanCannonFireToAircraft(-1))
+            if(!CanCannonFireToAircraft(-1))//only ground units
             {
-                nFindTarget = findTargetFlyingUnit;
-            }
-            if (CanCannonFireToGround(-1))
-            {
-                if (GetCannonType(0) == cannonTypeEarthquake)
+                if(movementMode==1)//hold position
                 {
-                    nFindTarget = nFindTarget | findTargetBuildingUnit;
+                    SetTarget(FindTarget(findTargetWaterUnit|findTargetNormalUnit|findTargetBuildingUnit,findEnemyUnit,findNearestUnit,findDestinationAnyUnit));
                 }
                 else
                 {
-                    nFindTarget = nFindTarget | findTargetNormalUnit | findTargetWaterUnit | findTargetBuildingUnit;
+                    SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit));
                 }
-            }
-            if(movementMode==1)//hold position
-            {
-                SetTarget(FindTarget(nFindTarget,findEnemyUnit,findNearestUnit,findDestinationAnyUnit));
             }
             else
             {
-                SetTarget(FindClosestEnemyUnitOrBuilding(nFindTarget));
+                if(movementMode==1)//hold position
+                {
+                    SetTarget(FindTarget(findTargetAnyUnit,findEnemyUnit,findNearestUnit,findDestinationAnyUnit));
+                }
+                else
+                {
+                    SetTarget(FindClosestEnemyUnitOrBuilding(findTargetWaterUnit | findTargetNormalUnit | findTargetFlyingUnit));
+                }
             }
             return true;
         }
@@ -495,23 +492,23 @@ multi:
     {
         if(traceMode)TraceD("A                                                \n");
         if (m_uTarget.IsLive() && 
-                    (GetCannonType(0) != cannonTypeIon || !m_uTarget.IsDisabled() || bFirstShoot))
-                {
+            (GetCannonType(0) != cannonTypeIon || !m_uTarget.IsDisabled() || bFirstShoot))
+        {
             if(GoToTarget())
             {
                 return Attacking,2;
             }
             else
             {
-                                bFirstShoot=false;
+                bFirstShoot=false;
                 CannonFireToTarget(-1, m_uTarget, -1);
-                        return Attacking;
+                return Attacking;
             }
         }
         else //target not exist
         {
             SetTarget(null);
-                        StopCannonFire(-1);
+            StopCannonFire(-1);
             if (IsMoving())
             {
                 CallStopMoving();
@@ -751,7 +748,7 @@ multi:
         SetCannonFireMode(-1, disableFire);
         SetTarget(null);
         m_uSpecialUnit = null;
-                ClearAttacker();
+        ClearAttacker();
         state Nothing;
     }
     
@@ -804,21 +801,21 @@ multi:
         NextCommand(0);
     }
     //--------------------------------------------------------------------------
-        command HoldPosition() hidden button "translateCommandStop" hotkey
-        {
-            SetTarget(null);
-            StopCannonFire(-1);
-            m_nStayGx = GetLocationX();
-            m_nStayGy = GetLocationY();
-            m_nStayLz = GetLocationZ();
-            movementMode = 1;
-            ChangedCommandValue();
-            if(IsMoving())
-                    CallStopMoving();
-            SetCannonFireMode(-1, disableFire);
-            state Nothing;
-        }
-
+    command HoldPosition() hidden button "translateCommandStop" hotkey
+    {
+        SetTarget(null);
+        StopCannonFire(-1);
+        m_nStayGx = GetLocationX();
+        m_nStayGy = GetLocationY();
+        m_nStayLz = GetLocationZ();
+        movementMode = 1;
+        ChangedCommandValue();
+        if(IsMoving())
+            CallStopMoving();
+        SetCannonFireMode(-1, disableFire);
+        state Nothing;
+    }
+    
     //--------------------------------------------------------------------------
     command Stop() button "translateCommandStop" description "translateCommandStopDescription" hotkey priority 20
     {
@@ -832,7 +829,7 @@ multi:
         SetCannonFireMode(-1, disableFire);
         state Nothing;
     }
-        
+    
     //--------------------------------------------------------------------------
     command Move(int nGx, int nGy, int nLz) button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21
     {
@@ -840,34 +837,34 @@ multi:
         m_nStayGx = nGx;
         m_nStayGy = nGy;
         m_nStayLz = nLz;
-                if(state==Froozen)
-                {
-                    m_nState = 3;
-                }
-                else
-                {
-                    SetCannonFireMode(-1, enableFire);
-                    AllowScriptWithdraw(true);
-                    CallMoveToPoint(nGx, nGy, nLz);
-                    state StartMoving;
-                }
+        if(state==Froozen)
+        {
+            m_nState = 3;
+        }
+        else
+        {
+            SetCannonFireMode(-1, enableFire);
+            AllowScriptWithdraw(true);
+            CallMoveToPoint(nGx, nGy, nLz);
+            state StartMoving;
+        }
     }
     //--------------------------------------------------------------------------
     command Attack(unit uTarget) button "translateCommandAttack" description "translateCommandAttackDescription" hotkey priority 22
     {
         SetTarget(uTarget);
-                bFirstShoot=true;
+        bFirstShoot=true;
         SetCannonFireMode(-1, enableFire);
         AllowScriptWithdraw(true);
-                if(state==Froozen)
-                {
-                    m_nState = 2;
-                }
-                else
-                {
-                    
-                    state Attacking;
-                }
+        if(state==Froozen)
+        {
+            m_nState = 2;
+        }
+        else
+        {
+            
+            state Attacking;
+        }
     }
     
     /*komenda nie wystawiana na zewnatrz*/
@@ -877,16 +874,16 @@ multi:
         m_nTargetGx = nX;
         m_nTargetGy = nY;
         m_nTargetLz = nZ;
-              AllowScriptWithdraw(true);
-            SetCannonFireMode(-1, disableFire);
-                if(state==Froozen)
-                {
-                    m_nState = 1;
-                }
-                else
-                {
+        AllowScriptWithdraw(true);
+        SetCannonFireMode(-1, disableFire);
+        if(state==Froozen)
+        {
+            m_nState = 1;
+        }
+        else
+        {
             state AttackingPoint;
-                }
+        }
     }
     
     //--------------------------------------------------------------------------

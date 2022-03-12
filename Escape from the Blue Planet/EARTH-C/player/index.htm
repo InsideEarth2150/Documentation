@@ -40,7 +40,6 @@ href="SetScriptData.htm">SetScriptData</a>(int nDataIndex, int nDataValue)
 int  <a
 href="GetScriptData.htm">GetScriptData</a>(int nDataIndex)
 void <a href="SetScriptUnit.htm">SetScriptUnit</a>(int nUnitIndex, unitex uUnit)
-void <a href="SetScriptUnit_1.htm">SetScriptUnit</a>(int nUnitIndex, unitex uUnit, int bKeepKilled)
 unitex <a
 href="GetScriptUnit.htm">GetScriptUnit</a>(int nUnitIndex)
 void <a
@@ -184,18 +183,6 @@ href="IsAllowGiveUnits.htm">IsAllowGiveUnits</a>()
 void <a href="SetAllowGiveMoney.htm">SetAllowGiveMoney</a>(int bSet)
 int  <a
 href="IsAllowGiveMoney.htm">IsAllowGiveMoney</a>()
-int  <a href="GetSideColor.htm">GetSideColor</a>()
-void <a href="SetSideColor.htm">SetSideColor</a>(int nNewSideColor)
-void <a href="EnableCommand.htm">EnableCommand</a>(int nCommand, int bEnable)
-int  <a href="IsCommandEnabled.htm">IsCommandEnabled</a>(int nCommand)
-int  <a href="IsCommandDisabled.htm">IsCommandDisabled</a>(int nCommand)
-void <a href="SetBuildingTypeRecyclePercent.htm">SetBuildingTypeRecyclePercent</a>(int nBuildingType, int nPercent)
-int  <a href="GetBuildingTypeRecyclePercent.htm">GetBuildingTypeRecyclePercent</a>(int nBuildingType)
-void <a href="SetDefaultUnitsRecyclePercent.htm">SetDefaultUnitsRecyclePercent</a>(int nPercent)
-int  <a href="GetDefaultUnitsRecyclePercent.htm">GetDefaultUnitsRecyclePercent</a>()
-void <a href="AddUnitToSpecialTab.htm">AddUnitToSpecialTab</a>(unit uUnit, int bAdd, int nPos)
-void <a href="SetMaxDistance.htm">SetMaxDistance</a>(int nDistance)
-int  <a href="GetMaxDistance.htm">GetMaxDistance</a>()
 </pre>
 
 <p><big>Enums</big></p>
@@ -246,172 +233,12 @@ ai2NeutralAI
 ai2BNSendResult
 </pre>
 
-<p>Player races: [MP] </p>
+<p>Player races: </p>
 
-<pre>raceUCS
+<pre>
+raceUCS
 raceED
 raceLC
-</pre>
-<p>Commands [MP]:</p>
-<pre>commandStop
-commandLand
-commandMove
-commandAttack
-commandAttackOnPoint
-commandEscort
-commandHoldPosition
-commandPatrol
-commandSetHarvestPoint
-commandRepair
-commandConvert
-commandRepaint
-commandUpgrade
-commandSetUpgradeWeapons
-commandSetUpgradeChasis
-commandSetUpgradeShield
-commandSetRepairMode
-commandSetConvertMode
-commandSetRepaintMode
-commandSetUpgradeMode
-commandSetRepaintSideColor
-commandSetContainerSource
-commandGetSingleContainer
-commandSetContainerDestination
-commandEnter
-commandSendSupplyRequest
-commandFlyForSupply
-commandBuildBuilding
-commandBuildTrench
-commandBuildFlatTerrain
-commandBuildWall
-commandBuildRoad
-commandBuildWideBridge
-commandBuildNarrowBridge
-commandBuildWideTunnel
-commandBuildNarrowTunnel
-commandMineTerrainClose
-commandMineTerrainMedium
-commandMineTerrainFar
-commandMineTerrainLine
-commandSetTransporterSupplyCenter
-commandMoveToSupplyCenterForLoading
-commandTransporterGetUnit
-commandTransporterPutUnit
-commandTransporterPutUnitToPoint
-commandTransporterDropUnit
-commandTransporterDropUnitToPoint
-commandTransporterSetTransportMode
-commandTransporterSetAutoGetPoint
-commandTransporterSetAutoPutPoint
-commandKeepFormation
-commandSetLights
-commandSetAttackMode
-commandSetMovementMode
-commandDisposePlatoon
-commandAddUnitToPlatoon
-commandRemoveUnitFromPlatoon
-commandRotatePlatoonLeft
-commandRotatePlatoonRight
-commandUserNoParam0
-commandUserNoParam1
-commandUserNoParam2
-commandUserNoParam3
-commandUserNoParam4
-commandUserNoParam5
-commandUserNoParam6
-commandUserNoParam7
-commandUserNoParam8
-commandUserNoParam9
-commandUserOneParam0
-commandUserOneParam1
-commandUserOneParam2
-commandUserOneParam3
-commandUserOneParam4
-commandUserOneParam5
-commandUserOneParam6
-commandUserOneParam7
-commandUserOneParam8
-commandUserOneParam9
-commandUserObject0
-commandUserObject1
-commandUserObject2
-commandUserObject3
-commandUserObject4
-commandUserObject5
-commandUserObject6
-commandUserObject7
-commandUserObject8
-commandUserObject9
-commandUserPoint0
-commandUserPoint1
-commandUserPoint2
-commandUserPoint3
-commandUserPoint4
-commandUserPoint5
-commandUserPoint6
-commandUserPoint7
-commandUserPoint8
-commandUserPoint9
-commandUserLine0
-commandUserLine1
-commandUserLine2
-commandUserLine3
-commandUserLine4
-commandUserLine5
-commandUserLine6
-commandUserLine7
-commandUserLine8
-commandUserLine9
-commandUserDoubleLine0
-commandUserDoubleLine1
-commandUserDoubleLine2
-commandUserDoubleLine3
-commandUserDoubleLine4
-commandUserDoubleLine5
-commandUserDoubleLine6
-commandUserDoubleLine7
-commandUserDoubleLine8
-commandUserDoubleLine9
-commandUserArea0
-commandUserArea1
-commandUserArea2
-commandUserArea3
-commandUserArea4
-commandUserArea5
-commandUserArea6
-commandUserArea7
-commandUserArea8
-commandUserArea9
-commandScriptPlayerSpecialBuildNextAngle
-commandScriptPlayerSpecialSetRepaintSideColorDialog
-commandScriptPlayerSpecialChangeUnitsScript
-commandScriptPlayerSpecialShowTransporterAutoGetPoint
-commandScriptPlayerSpecialShowTransporterAutoPutPoint
-commandBuildingSuperAttack
-commandAutodestruction
-commandSoldBuilding
-commandBuildingCreateRain
-commandBuildingCreateSnow
-commandBuildingCreateRainStorm
-commandBuildingCreateMeteorRain
-commandBuildingCreateWind
-commandBuildingRemoveCloud
-commandBuildingSpyPlayer0
-commandBuildingSpyPlayer1
-commandBuildingSpyPlayer2
-commandBuildingSpyPlayer3
-commandBuildingSpyPlayer4
-commandBuildingSpyPlayer5
-commandBuildingSpyPlayer6
-commandBuildingSpyPlayer7
-commandBuildingSpyPlayer8
-commandBuildingSpyPlayer9
-commandBuildingSpyPlayer10
-commandBuildingSpyPlayer11
-commandBuildingSpyPlayer12
-commandBuildingSpyPlayer13
-commandBuildingSpyPlayer14
-commandBuildingSpyPlayer15
 </pre>
 </body>
 </html>

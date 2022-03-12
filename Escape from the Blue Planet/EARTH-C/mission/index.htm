@@ -58,7 +58,6 @@ void <a
 href="DamageArea.htm">DamageArea</a>(int nIFFMask, int nX, int nY, int nZ, int nRange)
 void <a
 href="ShowArea.htm">ShowArea</a>(int nIFFMask, int nX, int nY, int nZ, int nRange)
-void <a href="ShowArea_1.htm">ShowArea</a>(int nIFFMask, int nX, int nY, int nZ, int nRange, int nShowFlags)
 void <a
 href="HideArea.htm">HideArea</a>(int nIFFMask, int nX, int nY, int nZ, int nRange)
 unitex <a
@@ -1112,10 +1111,7 @@ void <a
 href="SetPriceDivider.htm">SetPriceDivider</a>(int nDivider) 
 void <a
 href="SetTimeDivider.htm">SetTimeDivider</a>(int nDivider) 
-void <a href="SelectUnit.htm">SelectUnit</a>(unitex uUnit, int bAddToSelection)
-void <a href="EnableUnitSounds.htm">EnableUnitSounds</a>(int bEnable)
-void <a href="EnableBuildingSounds.htm">EnableBuildingSounds</a>(int bEnable)
-int  <a href="GetTerrainType.htm">GetTerrainType</a>() 
+void <a href="SelectUnit.htm">SelectUnit</a>(unitex uUnit, int bAddToSelection) 
 </pre>
 
 <p><big>Commands</big></p>
@@ -1172,16 +1168,14 @@ int  <a
 href="CustomEvent.htm">CustomEvent6</a>(int nParam1, int nParam2, int nParam3, int nParam4)
 int  <a
 href="CustomEvent.htm">CustomEvent7</a>(int nParam1, int nParam2, int nParam3, int nParam4)
-int  <a href="GetTerrainType.htm">GetTerrainType</a>(int nParam1, int nParam2, int nParam3, int nParam4)
-int  <a href="EnableBuildingSounds.htm">EnableBuildingSounds</a>(int bEnable)
-int  <a href="EnableUnitSounds.htm">EnableUnitSounds</a>(int bEnable)
 </pre>
 
 <p><big>Enums</big></p>
 
 <p>Goal states: </p>
 
-<pre>goalAchieved
+<pre>
+goalAchieved
 goalNotAchieved
 goalFailed
 </pre>
@@ -1227,7 +1221,6 @@ buildingCopula
 buildingLaserWall
 buildingSpaceStation
 buildingTransportCenter
-buildingRecycleCenter [MP]
 buildingMinningRefinery
 buildingMinningResourceTransportBase
 buildingBaseFactory (LC)
@@ -1260,7 +1253,6 @@ unitScreamer
 unitObserver
 unitCarrier
 unitRepairer
-unitTransporter [MP]
 unitAny
 </pre>
 
@@ -1308,9 +1300,6 @@ ai2BuildSappers
 ai2ChooseEnemy
 ai2NeutralAI
 ai2BNSendResult
-eAI2UseBuildingShields
-eAI2UseUnitShields
-eAI2CaptureSpecialTarget [MP]
 </pre>
 
 <p>Player races: </p>
@@ -1319,212 +1308,6 @@ eAI2CaptureSpecialTarget [MP]
 raceUCS
 raceED
 raceLC
-</pre>
-
-<pre>Terrain types:</pre>
-
-<pre>terrainTypeWinter
-terrainTypeEarlySpring
-terrainTypeSpring
-terrainTypeSummer
-terrainTypeDesert
-terrainTypeVulcanos
-terrainTypeLavaPits
-terrainTypeMoon
-</pre>
-<p>Commands: [MP]</p>
-<pre>
-commandStop
-commandLand
-commandMove
-commandAttack
-commandAttackOnPoint
-commandEscort
-commandHoldPosition
-commandPatrol
-commandSetHarvestPoint
-commandRepair
-commandConvert
-commandRepaint
-commandUpgrade
-commandSetUpgradeWeapons
-commandSetUpgradeChasis
-commandSetUpgradeShield
-commandSetRepairMode
-commandSetConvertMode
-commandSetRepaintMode
-commandSetUpgradeMode
-commandSetRepaintSideColor
-commandSetContainerSource
-commandGetSingleContainer
-commandSetContainerDestination
-commandEnter
-commandSendSupplyRequest
-commandFlyForSupply
-commandBuildBuilding
-commandBuildTrench
-commandBuildFlatTerrain
-commandBuildWall
-commandBuildRoad
-commandBuildWideBridge
-commandBuildNarrowBridge
-commandBuildWideTunnel
-commandBuildNarrowTunnel
-commandMineTerrainClose
-commandMineTerrainMedium
-commandMineTerrainFar
-commandMineTerrainLine
-commandSetTransporterSupplyCenter
-commandMoveToSupplyCenterForLoading
-commandTransporterGetUnit
-commandTransporterPutUnit
-commandTransporterPutUnitToPoint
-commandTransporterDropUnit
-commandTransporterDropUnitToPoint
-commandTransporterSetTransportMode
-commandTransporterSetAutoGetPoint
-commandTransporterSetAutoPutPoint
-commandKeepFormation
-commandSetLights
-commandSetAttackMode
-commandSetMovementMode
-commandDisposePlatoon
-commandAddUnitToPlatoon
-commandRemoveUnitFromPlatoon
-commandRotatePlatoonLeft
-commandRotatePlatoonRight
-commandUserNoParam0
-commandUserNoParam1
-commandUserNoParam2
-commandUserNoParam3
-commandUserNoParam4
-commandUserNoParam5
-commandUserNoParam6
-commandUserNoParam7
-commandUserNoParam8
-commandUserNoParam9
-commandUserOneParam0
-commandUserOneParam1
-commandUserOneParam2
-commandUserOneParam3
-commandUserOneParam4
-commandUserOneParam5
-commandUserOneParam6
-commandUserOneParam7
-commandUserOneParam8
-commandUserOneParam9
-commandUserObject0
-commandUserObject1
-commandUserObject2
-commandUserObject3
-commandUserObject4
-commandUserObject5
-commandUserObject6
-commandUserObject7
-commandUserObject8
-commandUserObject9
-commandUserPoint0
-commandUserPoint1
-commandUserPoint2
-commandUserPoint3
-commandUserPoint4
-commandUserPoint5
-commandUserPoint6
-commandUserPoint7
-commandUserPoint8
-commandUserPoint9
-commandUserLine0
-commandUserLine1
-commandUserLine2
-commandUserLine3
-commandUserLine4
-commandUserLine5
-commandUserLine6
-commandUserLine7
-commandUserLine8
-commandUserLine9
-commandUserDoubleLine0
-commandUserDoubleLine1
-commandUserDoubleLine2
-commandUserDoubleLine3
-commandUserDoubleLine4
-commandUserDoubleLine5
-commandUserDoubleLine6
-commandUserDoubleLine7
-commandUserDoubleLine8
-commandUserDoubleLine9
-commandUserArea0
-commandUserArea1
-commandUserArea2
-commandUserArea3
-commandUserArea4
-commandUserArea5
-commandUserArea6
-commandUserArea7
-commandUserArea8
-commandUserArea9
-commandScriptPlayerSpecialBuildNextAngle
-commandScriptPlayerSpecialSetRepaintSideColorDialog
-commandScriptPlayerSpecialChangeUnitsScript
-commandScriptPlayerSpecialShowTransporterAutoGetPoint
-commandScriptPlayerSpecialShowTransporterAutoPutPoint
-commandBuildingSuperAttack
-commandAutodestruction
-commandSoldBuilding
-commandBuildingCreateRain
-commandBuildingCreateSnow
-commandBuildingCreateRainStorm
-commandBuildingCreateMeteorRain
-commandBuildingCreateWind
-commandBuildingRemoveCloud
-commandBuildingSpyPlayer0
-commandBuildingSpyPlayer1
-commandBuildingSpyPlayer2
-commandBuildingSpyPlayer3
-commandBuildingSpyPlayer4
-commandBuildingSpyPlayer5
-commandBuildingSpyPlayer6
-commandBuildingSpyPlayer7
-commandBuildingSpyPlayer8
-commandBuildingSpyPlayer9
-commandBuildingSpyPlayer10
-commandBuildingSpyPlayer11
-commandBuildingSpyPlayer12
-commandBuildingSpyPlayer13
-commandBuildingSpyPlayer14
-commandBuildingSpyPlayer15
-</pre>
-<p>
-Terrain types [MP]:
-</p>
-<pre>terrainTypeWinter
-terrainTypeEarlySpring
-terrainTypeSpring
-terrainTypeSummer
-terrainTypeDesert
-terrainTypeVulcanos
-terrainTypeLavaPits
-terrainTypeMoon
-</pre>
-<p>Game features [MP]:
-</p>
-<pre>lockResearchDialog
-lockConstructionDialog
-lockUpgradeWeaponDialog</pre>
-
-<p>Artefact masks [MP]: </p>
-
-<pre>
-artefactRegenerateHP
-artefactRegenerateTemperature
-artefactRegenerateElectronics
-artefactRegenerateShield
-artefactRegenerateExternalAmmo
-artefactRegenerateEnergyAmmo
-artefactGiveShieldGenerator
-artefactGiveMoney
-artefactShowMap
-artefactSpecialAI
 </pre>
 </body>
 </html>

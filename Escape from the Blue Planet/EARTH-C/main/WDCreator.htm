@@ -18,13 +18,13 @@
 with '.wd' extension.&nbsp;<br>
 First, it's important to understand how game file system is working. Data files
 can be stored in '*.wd' files (as standard files are) or can be stored in
-subdirectories in The Moon Project as separate files (like levels created in editor
+subdirectories in Earth 2150 as separate files (like levels created in editor
 which are stored in 'Levels' directory). WD files contains directory structure -
 files of different types are in different directories. Name of '*.wd' file isn't
 important althrough usualy standard '*.wd' files contains files from directory
 with this name (f.e. Scripts.wd contains files from Scripts directory). If file
 with the same name exist in the same directory in some '*.wd' file and uder
-The Moon Project directory then game uses newer file.</p>
+Earth 2150 directory then game uses newer file.</p>
 <p>WDCreator.exe can be used in two ways. If you want just add files from one
 directory to one '*.wd' file you can call WDCreator.exe with specific
 parameters. For more complicated operations you can call WDCreator.exe
@@ -35,7 +35,7 @@ As you can see in examples below file names contains slashes and backslashes.
 Backslashes are in the &quot;external&quot; part of path, and slashes are in
 &quot;internal&quot; part of path - which is part of game file system. You must
 use slashes properly otherwise game can't handle this files. If some path ends
-with f.e. 'Scripts/&gt;.ecoMP' than char '&gt;' mean &quot;all files in this
+with f.e. 'Scripts/&gt;.eco' than char '&gt;' mean &quot;all files in this
 directory and its subdirectories&quot;.<br>
 Note that for scripts and levels you must use option 'c' or '&lt;archive'.</p>
 <p><u>Parameters for WDCreator.exe:</u><br>
@@ -48,8 +48,8 @@ c - add files to WD (added files are already compressed)<br>
 examples:</u><br>
 <i>WDCreator.exe MyLevels.wd c C:\Game\Earth/Levels/*.lnd
 C:\Game\Earth/Levels/*.mis<br>
-WDCreator.exe MyScripts.wd c ./Scripts/Units/MyTank.ecoMP ./Scripts/Gametypes/MyMultiGame.ecoMP<br>
-WDCreator.exe MyScripts.wd c ./Scripts/Gametypes/Single/*.ecoMP<br>
+WDCreator.exe MyScripts.wd c ./Scripts/Units/MyTank.eco ./Scripts/Gametypes/MyMultiGame.eco<br>
+WDCreator.exe MyScripts.wd c ./Scripts/Gametypes/Single/*.eco<br>
 </i><u>Using configuration files:</u><br>
 <i>WDCreator @scriptFile [define [define]]<br>
 </i><u>where scriptFile is a file with following commands:</u><br>
@@ -83,7 +83,7 @@ WDCreator.exe @WDCreator.dat ALL<br>
 #endif <br>
 #ifdef SCRIPTS<br>
 &lt;wdFile Scripts.wd<br>
-&lt;add &lt;archive &quot;c:\Games\Earth/Scripts/&gt;.ecoMP&quot;<br>
+&lt;add &lt;archive &quot;c:\Games\Earth/Scripts/&gt;.eco&quot;<br>
 #endif </p>
 
 </body>

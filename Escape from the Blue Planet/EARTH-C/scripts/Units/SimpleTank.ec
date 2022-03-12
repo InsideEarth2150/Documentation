@@ -20,14 +20,14 @@ tank "translateScriptNameTankSimple"
     int  m_nSpecialGy;
     int  m_nSpecialLz;
     int  m_nSpecialCounter;
-        int  m_nState;
-        int  bFirstShoot;
+    int  m_nState;
+    int  bFirstShoot;
     
     enum lights
     {
         "translateCommandStateLightsAUTO",
-        "translateCommandStateLightsON",
-        "translateCommandStateLightsOFF",
+            "translateCommandStateLightsON",
+            "translateCommandStateLightsOFF",
 multi:
         "translateCommandStateLightsMode"
     }
@@ -114,7 +114,6 @@ multi:
         int nTargetsCount;
         int nTargetsFlag;
         unit newTarget;
-        int nFindTarget;
         
         if(GetCannonType(0) != cannonTypeIon)
         {
@@ -124,25 +123,13 @@ multi:
             }
             else
             {
-                nFindTarget = 0;
-                if (CanCannonFireToAircraft(-1))
-                {
-                    nFindTarget = findTargetFlyingUnit;
-                }
-                if (CanCannonFireToGround(-1))
-                {
-                    if (GetCannonType(0) == cannonTypeEarthquake)
-                    {
-                        nFindTarget = nFindTarget | findTargetBuildingUnit;
-                    }
-                    else
-                    {
-                        nFindTarget = nFindTarget | findTargetNormalUnit | findTargetWaterUnit | findTargetBuildingUnit;
-                    }
-                }
                 //SetTarget(FindTarget(findTargetAnyUnit,findEnemyUnit,findNearestUnit,findDestinationAnyUnit));
                 SetTarget(null);
-                BuildTargetsArray(nFindTarget, findEnemyUnit,findDestinationAnyUnit);
+                if(CanCannonFireToAircraft(-1))
+                    BuildTargetsArray(findTargetAnyUnit, findEnemyUnit,findDestinationAnyUnit);
+                else
+                    BuildTargetsArray(findTargetWaterUnit|findTargetNormalUnit|findTargetBuildingUnit, findEnemyUnit,findDestinationAnyUnit);
+                
                 SortFoundTargetsArray();
                 nTargetsCount=GetTargetsCount();
                 if(nTargetsCount==0) return false;
@@ -273,7 +260,7 @@ multi:
     state Attacking
     {
         if (m_uTarget.IsLive() && 
-                    (GetCannonType(0) != cannonTypeIon || !m_uTarget.IsDisabled() || bFirstShoot))
+            (GetCannonType(0) != cannonTypeIon || !m_uTarget.IsDisabled() || bFirstShoot))
         {
             if(GoToTarget())
             {
@@ -281,15 +268,15 @@ multi:
             }
             else
             {
-                                bFirstShoot=false;
+                bFirstShoot=false;
                 CannonFireToTarget(-1, m_uTarget, -1);
-                                return Attacking;
+                return Attacking;
             }
         }
         else //target not exist
         {
             SetTarget(null);
-                        StopCannonFire(-1);
+            StopCannonFire(-1);
             if (IsMoving())
             {
                 CallStopMoving();
@@ -414,7 +401,7 @@ multi:
         StopCannonFire(-1);
         SetCannonFireMode(-1, disableFire);
         SetTarget(null);
-                ClearAttacker();
+        ClearAttacker();
         state Nothing;
     }
     
@@ -463,20 +450,20 @@ multi:
         AllowScriptWithdraw(true);
         state Nothing;
     }
-        //--------------------------------------------------------------------------
-        command HoldPosition() hidden button "translateCommandStop" description "translateCommandStopDescription" hotkey priority 20
-        {
-            SetTarget(null);
-            StopCannonFire(-1);
-            m_nStayGx = GetLocationX();
-            m_nStayGy = GetLocationY();
-            m_nStayLz = GetLocationZ();
-            if(IsMoving())
-                    CallStopMoving();
-            SetCannonFireMode(-1, disableFire);
-            AllowScriptWithdraw(true);
-            state Nothing;
-        }
+    //--------------------------------------------------------------------------
+    command HoldPosition() hidden button "translateCommandStop" description "translateCommandStopDescription" hotkey priority 20
+    {
+        SetTarget(null);
+        StopCannonFire(-1);
+        m_nStayGx = GetLocationX();
+        m_nStayGy = GetLocationY();
+        m_nStayLz = GetLocationZ();
+        if(IsMoving())
+            CallStopMoving();
+        SetCannonFireMode(-1, disableFire);
+        AllowScriptWithdraw(true);
+        state Nothing;
+    }
     //--------------------------------------------------------------------------
     command Move(int nGx, int nGy, int nLz) hidden button "translateCommandMove" description "translateCommandMoveDescription" hotkey priority 21
     {
@@ -489,22 +476,22 @@ multi:
         CallMoveToPoint(nGx, nGy, nLz);
         state StartMoving;
     }
-        //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     command Attack(unit uTarget) button "translateCommandAttack" description "translateCommandAttackDescription" hotkey priority 22
     {
         SetTarget(uTarget);
-                bFirstShoot=true;
+        bFirstShoot=true;
         SetCannonFireMode(-1, enableFire);
         AllowScriptWithdraw(true);
-                if(state==Froozen)
-                {
-                    m_nState = 2;
-                }
-                else
-                {
-                    
-                    state Attacking;
-                }
+        if(state==Froozen)
+        {
+            m_nState = 2;
+        }
+        else
+        {
+            
+            state Attacking;
+        }
     }
     
     /*komenda nie wystawiana na zewnatrz*/
@@ -514,18 +501,18 @@ multi:
         m_nTargetGx = nX;
         m_nTargetGy = nY;
         m_nTargetLz = nZ;
-              AllowScriptWithdraw(true);
-            SetCannonFireMode(-1, disableFire);
-                if(state==Froozen)
-                {
-                    m_nState = 1;
-                }
-                else
-                {
+        AllowScriptWithdraw(true);
+        SetCannonFireMode(-1, disableFire);
+        if(state==Froozen)
+        {
+            m_nState = 1;
+        }
+        else
+        {
             state AttackingPoint;
-                }
+        }
     }    
-        //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     command SendSupplyRequest() hidden button "translateCommandSupply" description "translateCommandSupplyDescription" hotkey priority 27
     {
         SendSupplyRequest();

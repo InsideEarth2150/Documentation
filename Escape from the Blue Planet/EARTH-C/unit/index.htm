@@ -49,7 +49,6 @@ int  <a href="IsRepairer.htm">IsRepairer</a>()
 int  <a
 href="IsSapper.htm">IsSapper</a>()
 int  <a href="IsSupplier.htm">IsSupplier</a>()
-int  <a href="IsTransporter.htm">IsTransporter</a>()
 int  <a
 href="IsPassive.htm">IsPassive</a>()
 int  <a href="GetIBuildingType.htm">GetBuildingType</a>()
@@ -130,7 +129,6 @@ href="GetMoveLocationAngle.htm">GetMoveLocationAngle</a>()
 void <a href="SetLightsMode.htm">SetLightsMode</a>(int nMode)
 int  <a
 href="IsFreePoint.htm">IsFreePoint</a>(int nX, int nY, int nZ)
-int  <a href="IsOnGround.htm">IsOnGround</a>()
 void <a
 href="SendSupplyRequest.htm">SendSupplyRequest</a>()
 unit <a href="GetAttacker.htm">GetAttacker</a>()
@@ -146,8 +144,6 @@ href="FindTarget.htm">FindTarget</a>(int nTargetType, int nSideSelection, int nK
 void <a
 href="BuildTargetsArray.htm">BuildTargetsArray</a>(int nTargetType, int nSideSelection, int nDestinationSelection)
 void <a
-href="BuildTargetsArray_1.htm">BuildTargetsArray</a>(int nTargetType, int nSideSelection, int nDestinationSelection, int nXFrom, int nYFrom, int nZFrom, int nRange)
-void <a
 href="SortFoundTargetsArray.htm">SortFoundTargetsArray</a>()
 int  <a
 href="GetTargetsCount.htm">GetTargetsCount</a>()
@@ -160,16 +156,6 @@ href="FindClosestEnemy.htm">FindClosestEnemy</a>()
 unit <a href="FindClosestEnemyEx.htm">FindClosestEnemyEx</a>(int nTargetType)
 unit <a
 href="FindClosestEnemyUnitOrBuilding.htm">FindClosestEnemyUnitOrBuilding</a>(int nTargetType)
-int  <a
-href="FindArtefact.htm">FindArtefact</a>(int nArtefactMask)
-int  <a
-href="FindArtefact_1.htm">FindArtefact</a>(int nArtefactMask, int nFindRange)
-int  <a
-href="GetFoundArtefactX.htm">GetFoundArtefactX</a>()
-int  <a
-href="GetFoundArtefactY.htm">GetFoundArtefactY</a>()
-int  <a
-href="GetFoundArtefactZ.htm">GetFoundArtefactZ</a>()
 void <a
 href="AllowScriptWithdraw.htm">AllowScriptWithdraw</a>(int nAllow)
 int  <a
@@ -202,15 +188,7 @@ void <a
 href="MessageTalk.htm">MessageTalk</a>(int nMessageNum)
 int  <a href="InPlatoon.htm">InPlatoon</a>()
 int  <a
-href="IsPlayer.htm">IsPlayer</a>(int nIFFNum)
-int  <a
-href="CanBeTransported.htm">CanBeTransported</a>()
-int  <a
-href="IsTransported.htm">IsTransported</a>()
-int  <a
-href="SetUnitName.htm">SetUnitName</a>(string sName)
-string <a
-href="GetUnitName.htm">GetUnitName</a>()
+href="IsPlayer.htm">IsPlayer</a>()
 </pre>
 
 <p><big>Events</big></p>
@@ -268,28 +246,12 @@ buildingCopula
 buildingLaserWall
 buildingSpaceStation
 buildingTransportCenter
-buildingRecycleCenter [MP]
 buildingMinningRefinery
 buildingMinningResourceTransportBase
 buildingBaseFactory (LC)
 buildingBadRaceBuilding
 buildingWaitingForCopulaOpen
 buildingTransportedDown
-
-<p>Artefact masks [MP]: </p>
-
-<pre>
-artefactRegenerateHP
-artefactRegenerateTemperature
-artefactRegenerateElectronics
-artefactRegenerateShield
-artefactRegenerateExternalAmmo
-artefactRegenerateEnergyAmmo
-artefactGiveShieldGenerator
-artefactGiveMoney
-artefactShowMap
-artefactSpecialAI
-</pre>
 </pre>
 </body>
 </html>

@@ -267,8 +267,8 @@ sapper "translateScriptNameMiner"
                 state MovingToMinePutPoint;
             }
         }
-                else
-                    NextCommand(0);
+        else
+            NextCommand(0);
         true;
     }
     

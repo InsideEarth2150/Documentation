@@ -87,7 +87,7 @@ harvester "translateScriptNameHarvester"
             return MovingToHarvestPoint,40;
         }
     }
-
+    
     state MovingToHarvestPoint
     {
         int nPosX;
