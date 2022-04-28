@@ -8,8 +8,6 @@
 
 ## Contributing
 
-We need your help!
-
 If you identify issues with the documentation, please log the [Issue](https://github.com/InsideEarth2150/Documentation/issues) and then feel free to fork and submit a pull request to merge the corrections referencing your issue id#
 
  1. [Fork](https://github.com/InsideEarth2150/Documentation/fork) the project
