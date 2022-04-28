@@ -2,6 +2,7 @@
 ![Logo](logo.png)
 
 ## Live Sites
+* [Earth-C](https://insideearth2150.github.io/Documentation/Escape%20from%20the%20Blue%20Planet/EARTH-C/)
 * [Moon-C](https://insideearth2150.github.io/Documentation/The%20Moon%20Project/MOON-C/)
 * [Map Editor](https://insideearth2150.github.io/Documentation/Maps%20(Levels)/Manual/editor-handbuch.html)
 
