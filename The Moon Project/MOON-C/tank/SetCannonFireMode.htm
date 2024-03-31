@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>SetCannonFireMode function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -30,6 +31,9 @@ This function is used for setting or clearing automatic fire mode. In automatic 
 cannon will find target it's calling event <strong>OnCannonFoundTarget</strong> and if
 event return false cannon will fire to found target.<br>
 If nCannonNum == -1 then we change mode for all cannons on tank.</p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Function will do nothing if nFireMode is out of range or if weapon ammo type is SdiLaser, AntiRocket or Ballistic.</span>
 
 <p><strong>See also</strong><br>
 <a href="../unit/OnCannonFoundTarget.htm">OnCannonFoundTarget</a></p>

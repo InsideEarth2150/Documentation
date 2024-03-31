@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>GetNumberOfUnits function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -19,16 +20,24 @@
 nUnitFlags - one of:
 </p>
 
-<p>chassisTank<br>
-chassisAmphibianTank<br>
-chassisShip<br>
-chassisHelicopter<br>
-chassisMask<br>
-chassisMiner<br>
-chassisBuilder<br>
-chassisHarvester<br>
-chassisSupplier<br>
-chassisFake<br>
+<p>chassisTank <span class="ieo-comment"> - 0x1</span><br>
+chassisAmphibianTank <span class="ieo-comment"> - 0x2</span><br>
+chassisShip <span class="ieo-comment"> - 0x4</span><br>
+chassisHelicopter <span class="ieo-comment"> - 0x8</span><br>
+<s>chassisMask</s><span class="ieo-comment"> chassisAny - 0xFF</span><br>
+<s>chassisMiner</s><span class="ieo-comment"> unitMiner - 0x100</span><br>
+<s>chassisBuilder</s><span class="ieo-comment"> unitBuilder - 0x200</span><br>
+<s>chassisHarvester</s><span class="ieo-comment"> unitHarvester - 0x400</span><br>
+<s>chassisSupplier</s><span class="ieo-comment"> unitSupplier - 0x800</span><br>
+<s>chassisFake</s><span class="ieo-comment"> unitFake - 0x1000</span><br>
+<span class="ieo-comment">unitArmed - 0x2000</span><br>
+<span class="ieo-comment">unitShadow - 0x4000</span><br>
+<span class="ieo-comment">unitScreamer - 0x8000</span><br>
+<span class="ieo-comment">unitObserver - 0x10000</span><br>
+<span class="ieo-comment">unitCarrier - 0x20000</span><br>
+<span class="ieo-comment">unitRepairer - 0x40000</span><br>
+<span class="ieo-comment">unitTransporter - 0x40000</span><br>
+<span class="ieo-comment">unitAny - 0xFFF00</span><br>
 </p>
 
 <p><strong>Return values</strong><br>
@@ -38,6 +47,10 @@ number of units
 <p><strong>Description</strong><br>
 Returns number of units of certain kind
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Most likely unintended, masks unitRepairer and unitTransporter have the same code. The method can be used to get number of units matching multiple flags, such us: GetNumberOfUnits(chassisShip | unitArmed). The first 4 masks (chassis masks) seem to be taken into account only if other masks match and are treated a bit separately. For example: GetNumberOfUnits(chassisTank | unitArmed) will return only units that are both armed and with tank chassis. However, GetNumberOfUnits(chassisTank | chassisShip | unitArmed) will return number of units that are armed AND of type tank OR ship. The exact behaviour of this function may require further tests.</span>
+
 
 <p><strong>See also</strong><br>
 </p>

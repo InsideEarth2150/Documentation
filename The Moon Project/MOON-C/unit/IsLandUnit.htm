@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>IsLandUnit function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -25,6 +26,16 @@ otherwise.</p>
 
 <p><strong>Description</strong><br>
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">The method validates ObjectType property that is set in parameters. It will return false if target is null, is not an instance of Unit class (0xc00101) or the ObjectType is one of the following (naming convention from parameters file):
+<ul>
+<li>helicopter - 0x0018
+<li>harrier - 0x0020
+<li>plane - 0x0028
+</ul>
+Technically, after validating that enity is not null and is of unit class, it uses and negates <a href="IsHelicopter.htm">IsHelicopter</a> function logic.
+</span>
 
 <p><strong>See also</strong><br>
 <a href="IsLandTarget.htm">IsLandTarget</a></p>

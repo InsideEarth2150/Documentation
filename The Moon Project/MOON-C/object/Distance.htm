@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>Distance function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -22,10 +23,13 @@ nX2 - x-coordinate of the second point.<br>
 nY2 - y-coordinate of the second point.</p>
 
 <p><strong>Return values</strong><br>
-Distance between (nX1, nY2) and (nX2, nY2) points.</p>
+Distance between (nX1, nY1) and (nX2, nY2) points.</p>
 
 <p><strong>Description</strong><br>
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">The returned value is just an approximation of the distance, not the exact value. The formula is the second circle approximation (thx to Noctis for naming it) and is as follows: max(abs(nX1-nX2),abs(nY1-nY2)) + 0.5*min(abs(nX1-nX2),abs(nY1-nY2)).</span>
 
 <p><strong>See also</strong><br>
 </p>

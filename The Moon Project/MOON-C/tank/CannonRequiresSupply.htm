@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>CannonRequiresSupply function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -23,11 +24,15 @@ nCannonNum - cannon number.</p>
 True if cannon number nCannonNum requires external ammo supply, false otherwise.</p>
 
 <p><strong>Description</strong><br>
-Result of this function dosn't depend on current ammo count.<br>
+Result of this function doesn't depend on current ammo count.<br>
 If nCannonNum == -1 then function returns true if at least one of cannons requires
 external ammo supply.</p>
 
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Nothing to add, although it is worth emphasizing that the function just checks if the cannon is resupplyable, not if it is out of ammo. For instance, heavy electro cannon will always return false, while heavy rockets will always return true.</span>
+
 <p><strong>See also</strong><br>
-<a href="../unit/SendSupplyRequest.htm">SendSupplyRequest</a></p>
+<a href="../unit/SendSupplyRequest.htm">SendSupplyRequest</a>, 
+<a href="../unit/HaveCannonsMissingAmmo.htm">HaveCannonsMissingAmmo</a></p>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>GetBuildingType function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -25,7 +26,12 @@ If unit is a building than returns it's type, if not returns 0.</p>
 <p><strong>Description</strong><br>
 </p>
 
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Returned value is of <a href="../Enums/BuildingType.htm">BuildingType</a>. Since buildingNormal has numeric value of 0, and the function returns 0, then it seems it is not possible to check if unit is a building of "buildingNormal" type, unless combined with <a href="IsBuilding.htm">IsBuilding</a> function.</span>
+
+
 <p><strong>See also</strong><br>
-<a href="IsBuilding.htm">IsBuilding</a></p>
+<a href="IsBuilding.htm">IsBuilding</a>
+<a href="../Enums/BuildingType.htm">BuildingTypes</a></p>
 </body>
 </html>

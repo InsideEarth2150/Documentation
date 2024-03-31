@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>GetCannonType function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -39,6 +40,9 @@ cannonTypeSuperPlasma - plasma cannon building.</p>
 
 <p><strong>Description</strong><br>
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Returns the cannon type at given index as described, however the way the index is calculated may not be that obvious. The indexation starts with 0. The game iterates through all slots and subslots, counts weapons and stops at target index. It returns the cannon type of weapon at that slot. For example, HT Ural with HeavyRockets and HeavyCannon + SmallRockets on top, would have weapon indices as follows: hR - 0,hC - 1, sR - 2. Ural with hC and hC, would be: frist hC - 0, second hC - 1. Ural with hC+MG and hL+sL would be: hC - 0, MG - 1, hL - 2, sL - 3. If we replaced MG in the last example with banner (which is not of weapon class), it would be: hC - 0, hL - 1, sL - 2. Returns 0 (which is ambiguous with cannonTypeLaser btw...) if target is null or index is out of range. The function can also return value 0xf which is Earthquake cannon type.</span>
 
 <p><strong>See also</strong><br>
 <a href="GetCannonsCount.htm">GetCannonsCount</a></p>

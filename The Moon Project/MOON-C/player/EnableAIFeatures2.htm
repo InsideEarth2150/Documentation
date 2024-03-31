@@ -17,15 +17,15 @@
 
 <p><strong>Parameters</strong><br>
 nFlags:<br>
-ai2BuildingTowers - AI defences heavilly attacked buildings by building defence
+ai2BuildingTowers = 0x2 - AI defences heavilly attacked buildings by building defence
 towers<br>
-ai2BuildFromStartingPoint - AI tries to build everything as close to starting
+ai2BuildFromStartingPoint = 0x4 - AI tries to build everything as close to starting
 point as possible<br>
-ai2BuildSappers - AI builds sappers and order them to mine area around<br>
-ai2ChooseEnemy - allows AI to choose enemy (otherwise you have to use choose
+ai2BuildSappers = 0x8 - AI builds sappers and order them to mine area around<br>
+ai2ChooseEnemy = 0x10 - allows AI to choose enemy (otherwise you have to use choose
 enemy function)<br>
-ai2NeutralAI - AI thread others AI as neutral<br>
-ai2BNSendResult.- player's result may be sent to EarthNet server (you can only
+ai2NeutralAI = 0x20 - AI thread others AI as neutral<br>
+ai2BNSendResult = 0x80000000- player's result may be sent to EarthNet server (you can only
 disable this flag)</p>
 
 <p><strong>Return values</strong><br>

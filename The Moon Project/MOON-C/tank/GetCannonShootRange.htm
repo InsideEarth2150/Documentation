@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>GetCannonShootRange function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -24,6 +25,9 @@ Range of fire of cannon number nCannonNum.</p>
 
 <p><strong>Description</strong><br>
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Returns the shoot range of a cannon at given index. See <a href="../tank/GetCannonType.htm">tank's GetCannonType</a> for indexation rules. Returns 0 if target is null or index is out of range. The value includes bonuses from ammo, exp level and banner. The final value (including modifiers) is reduced by 25% for sonic and earthquake weapons, that's why it will return 3 for sonic with range 5 (5*0.75=3.75) and 4 for sonic in banner range with range 5+1 (6*0.75=4.5).</span>
 
 <p><strong>See also</strong><br>
 <a href="GetCannonSightRange.htm">GetCannonSightRange</a></p>
