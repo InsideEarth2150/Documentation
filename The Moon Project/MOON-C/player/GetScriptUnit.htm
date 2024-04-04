@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>GetScriptUnit function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
 <p><strong>Scope</strong>: public</p>
 
 <p><strong>Parameters</strong><br>
-nUnitIndex - index
+nUnitIndex - index <span class="ieo-comment"> - from 0 to 19</span>
 </p>
 
 <p><strong>Return values</strong><br>
@@ -26,6 +27,9 @@ unitex
 <p><strong>Description</strong><br>
 Gets unit from common area (shared between missions, campaigns and bases)
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Data in the "common area" is shared by given player's instances on all levels. If you set data using mission's player instance, it will be available in other levels (main base, otehr bases and next missions). Data is stored in a 20-element array, what limits range of nDataIndex parameter. Calling this function with index &lt;0 or &gt;= 20 will always return null.</span>
 
 <p><strong>See also</strong><br>
 <a href="GetScriptData.htm">GetScriptData</a>, <a href="SetScriptUnit.htm">SetScriptUnit</a>,

@@ -34,11 +34,11 @@ int  <a href="GetMoney.htm">GetMoney</a>()
 void <a href="SetEnemy.htm">SetEnemy</a>(player pNewEnemyPlayer)
 void <a href="SetNeutral.htm">SetNeutral</a>(player pNewNeutralPlayer)
 void <a href="SetAlly.htm">SetAlly</a>(player pNewAllyPlayer)
-void <a href="SetScriptData.htm">SetScriptData</a>(int nDataIndex, int nDataValue)
-int  <a href="GetScriptData.htm">GetScriptData</a>(int nDataIndex)
-void <a href="SetScriptUnit.htm">SetScriptUnit</a>(int nUnitIndex, unitex uUnit)
-void <a href="SetScriptUnit_1.htm">SetScriptUnit</a>(int nUnitIndex, unitex uUnit, int bKeepKilled)
-unitex <a href="GetScriptUnit.htm">GetScriptUnit</a>(int nUnitIndex)
+void <a href="SetScriptData.htm">SetScriptData</a><span style="color: red">*</span>(int nDataIndex, int nDataValue)
+int  <a href="GetScriptData.htm">GetScriptData</a><span style="color: red">*</span>(int nDataIndex)
+void <a href="SetScriptUnit.htm">SetScriptUnit</a><span style="color: red">*</span>(int nUnitIndex, unitex uUnit)
+void <a href="SetScriptUnit_1.htm">SetScriptUnit</a><span style="color: red">*</span>(int nUnitIndex, unitex uUnit, int bKeepKilled)
+unitex <a href="GetScriptUnit.htm">GetScriptUnit</a><span style="color: red">*</span>(int nUnitIndex)
 void <a href="GiveAllUnitsTo.htm">GiveAllUnitsTo</a>(player pPlayer)
 void <a href="GiveAllUnitsTo_1.htm">GiveAllUnitsTo</a>(player pPlayer, int nX, int nY, int nRange) - not implemented
 void <a href="GiveAllBuildingsTo.htm">GiveAllBuildingsTo</a>(player pPlayer)
@@ -51,8 +51,8 @@ int  <a href="GetNumberOfBuildings.htm">GetNumberOfBuildings</a>()
 int  <a href="GetNumberOfBuildings_1.htm">GetNumberOfBuildings</a>(int nBuildingType)
 int  <a href="GetNumberOfBuildings_2.htm">GetNumberOfBuildings</a>(int nX, int nY, int nRange) - not implemented
 void <a href="EnableAI.htm">EnableAI</a>(int nEnable)
-void <a href="EnableAIFeatures.htm">EnableAIFeatures</a>(int nFlags, int nEnable)
-void <a href="EnableAIFeatures2.htm">EnableAIFeatures2</a>(int nFlags, int nEnable)
+void <a href="EnableAIFeatures.htm">EnableAIFeatures</a><span style="color: red">*</span>(int nFlags, int nEnable)
+void <a href="EnableAIFeatures2.htm">EnableAIFeatures2</a><span style="color: red">*</span>(int nFlags, int nEnable)
 int  <a href="GetStartingPointX.htm">GetStartingPointX</a>()
 int  <a href="GetStartingPointY.htm">GetStartingPointY</a>()
 int  <a href="IsPointLocated.htm">IsPointLocated</a>(int nX, int nY, int nZ)
@@ -82,11 +82,11 @@ void <a href="EnableBuilding.htm">EnableBuilding</a>(string strBuildingID, int n
 unitex <a href="CreateUnit.htm">CreateUnit</a>(int nX, int nY, int nZ, string strScript, string strChasis, string strWeapon0, string strWeapon1, string strWeapon2, string strWeapon3)
 int  <a href="GetRace.htm">GetRace</a>()
 void <a href="CreateDefaultUnit.htm">CreateDefaultUnit</a>(int nX, int nY, int nZ)
-void <a href="RussianAttack.htm">RussianAttack</a>(int nX, int nY, int nZ)
-void <a href="Attack.htm">Attack</a>(int nX, int nY, int nZ)
-void <a href="Attack_1.htm">Attack</a>(unit uTarget)
-void <a href="RussianAttack.htm">RussianAttack</a>(unit uTarget)
-void <a href="ChooseEnemy.htm">ChooseEnemy</a>(player pEnemyPlayer)
+void <a href="RussianAttack.htm">RussianAttack</a><span style="color: red">*</span>(int nX, int nY, int nZ)
+void <a href="Attack.htm">Attack</a><span style="color: red">*</span>(int nX, int nY, int nZ)
+void <a href="Attack.htm">Attack</a><span style="color: red">*</span>(unit uTarget)
+void <a href="RussianAttack.htm">RussianAttack</a><span style="color: red">*</span>(unit uTarget)
+void <a href="ChooseEnemy.htm">ChooseEnemy</a><span style="color: red">*</span>(player pEnemyPlayer)
 void <a href="SetMaxTankPlatoonSize.htm">SetMaxTankPlatoonSize</a>(int nSize)
 void <a href="SetMaxHelicopterPlatoonSize.htm">SetMaxHelicopterPlatoonSize</a>(int nSize)
 void <a href="SetMaxShipPlatoonSize.htm">SetMaxShipPlatoonSize</a>(int nSize)
@@ -112,16 +112,16 @@ int  <a href="IsNeutral.htm">IsNeutral</a><span style="color: red">*</span>(play
 int  <a href="GetMoneyFromFinishedMissions.htm">GetMoneyFromFinishedMissions</a>()
 unitex <a href="CreateUnitEx.htm">CreateUnitEx</a>(int nX, int nY, int nZ, string strScript, string strChasis, string strWeapon0, string strWeapon1, string strWeapon2, string strWeapon3)
 unitex <a href="CreateUnitEx.htm">CreateUnitEx</a>(int nX, int nY, int nZ, string strScript, string strChasis, string strWeapon0, string strWeapon1, string strWeapon2, string strWeapon3, int nShieldUpdateNum)
-player <a href="GetMainEnemy.htm">GetMainEnemy</a>()
+player <a href="GetMainEnemy.htm">GetMainEnemy</a><span style="color: red">*</span>()
 void <a href="SetAllowGiveUnits.htm">SetAllowGiveUnits</a>(int bSet)
 int  <a href="IsAllowGiveUnits.htm">IsAllowGiveUnits</a>()
 void <a href="SetAllowGiveMoney.htm">SetAllowGiveMoney</a>(int bSet)
 int  <a href="IsAllowGiveMoney.htm">IsAllowGiveMoney</a>()
 int  <a href="GetSideColor.htm">GetSideColor</a><span style="color: red">*</span>()
 void <a href="SetSideColor.htm">SetSideColor</a>(int nNewSideColor)
-void <a href="EnableCommand.htm">EnableCommand</a>(int nCommand, int bEnable)
-int  <a href="IsCommandEnabled.htm">IsCommandEnabled</a>(int nCommand)
-int  <a href="IsCommandDisabled.htm">IsCommandDisabled</a>(int nCommand)
+void <a href="EnableCommand.htm">EnableCommand</a><span style="color: red">*</span>(int nCommand, int bEnable)
+int  <a href="IsCommandEnabled.htm">IsCommandEnabled</a><span style="color: red">*</span>(int nCommand)
+int  <a href="IsCommandDisabled.htm">IsCommandDisabled</a><span style="color: red">*</span>(int nCommand)
 void <a href="SetBuildingTypeRecyclePercent.htm">SetBuildingTypeRecyclePercent</a>(int nBuildingType, int nPercent)
 int  <a href="GetBuildingTypeRecyclePercent.htm">GetBuildingTypeRecyclePercent</a>(int nBuildingType)
 void <a href="SetDefaultUnitsRecyclePercent.htm">SetDefaultUnitsRecyclePercent</a>(int nPercent)
@@ -133,235 +133,11 @@ int  <a href="GetMaxDistance.htm">GetMaxDistance</a>()
 
 <p><big>Enums</big></p>
 
-<p>Player AI features: </p>
-
-<pre>
-aiBuildMiningBuildings - 0x10
-aiBuildMiningUnits - 0x20
-aiControlMiningUnits - 0x40
-aiBuildSupplyBuildings - 0x80
-aiBuildSupplyUnits - 0x100
-aiControlSupplyUnits - 0x200
-aiBuildPowerBuildings - 0x400
-aiBuildResearchBuildings - 0x800
-aiControlResearches - 0x1000
-aiControlDefense - 0x2000
-aiControlOffense - 0x4000
-aiBuildBuilders - 0x8000
-aiBuildRepairers - 0x10000
-aiBuildShadows - 0x20000
-aiBuildScreamers - 0x40000
-aiBuildSuperAttack - 0x80000
-aiEnabled - 0x100000
-aiBuildTanks - 0x200000
-aiBuildShips - 0x400000
-aiBuildHelicopters - 0x800000
-aiBuildCivilFactory - 0x1000000
-aiBuildMilitaryFactory - 0x2000000
-aiBuildShipyard - 0x4000000
-aiBuildBuildings - 0x7080c90
-aiBuildSpecialUnits - 0xF8000
-aiRush - 0x10000000
-aiUpgradeCannons - 0x20000000
-aiEverything - 0xFFFFFFF2
-aiDefenseTowers - 0x40000000
-aiRejectAlliance - 0x80000000
-</pre>
-
-<p>Player AI features 2 (same as AI features plus): </p>
-
-<pre>
-ai2BuildingTowers - 0x2
-ai2BuildFromStartingPoint - 0x4
-ai2BuildSappers - 0x8
-ai2ChooseEnemy - 0x10
-ai2NeutralAI - 0x20
-ai2BNSendResult - 0x80000000
-<span class="ieo-comment">ai2UseBuildingShields - 0x40</span>
-<span class="ieo-comment">ai2UseUnitShields - 0x80</span>
-<span class="ieo-comment">ai2CaptureSpecialTarget - 0x400</span>
-</pre>
-
 <p>Player races: [MP] </p>
 
 <pre>raceUCS
 raceED
 raceLC
-</pre>
-<p>Commands [MP]:</p>
-<pre>commandStop = 0x5
-commandLand = 0x6
-commandMove = 0x7
-commandAttack = 0x8
-commandAttackOnPoint = 0x9
-commandEscort = 0xA
-commandHoldPosition = 0xB
-commandPatrol = 0xC
-commandSetHarvestPoint = 0xD
-commandRepair = 0xE
-commandConvert = 0xF
-commandRepaint = 0x10
-commandUpgrade = 0x11
-commandSetUpgradeWeapons = 0x12
-commandSetUpgradeChasis = 0x13
-commandSetUpgradeShield = 0x14
-commandSetRepairMode = 0x15
-commandSetConvertMode = 0x16
-commandSetRepaintMode = 0x17
-commandSetUpgradeMode = 0x18
-commandSetRepaintSideColor = 0x19
-commandSetContainerSource = 0x1A
-commandGetSingleContainer = 0x1B
-commandSetContainerDestination = 0x1C
-commandEnter = 0x1D
-commandSendSupplyRequest = 0x1E
-commandFlyForSupply = 0x1F
-commandBuildBuilding = 0x20
-commandBuildTrench = 0x21
-commandBuildFlatTerrain = 0x22
-commandBuildWall = 0x23
-commandBuildRoad = 0x24
-commandBuildWideBridge = 0x25
-commandBuildNarrowBridge = 0x26
-commandBuildWideTunnel = 0x27
-commandBuildNarrowTunnel = 0x28
-commandMineTerrainClose = 0x29
-commandMineTerrainMedium = 0x2A
-commandMineTerrainFar = 0x2B
-commandMineTerrainLine = 0x2C
-commandSetTransporterSupplyCenter = 0x2D
-commandMoveToSupplyCenterForLoading = 0x2E
-commandTransporterGetUnit = 0x2F
-commandTransporterPutUnit = 0x30
-commandTransporterPutUnitToPoint = 0x31
-commandTransporterDropUnit = 0x32
-commandTransporterDropUnitToPoint = 0x33
-commandTransporterSetTransportMode = 0x34
-commandTransporterSetAutoGetPoint = 0x35
-commandTransporterSetAutoPutPoint = 0x36
-commandKeepFormation = 0x37
-commandSetLights = 0x38
-commandSetAttackMode = 0x39
-commandSetMovementMode = 0x3A
-commandDisposePlatoon = 0x3B
-commandAddUnitToPlatoon = 0x3C
-commandRemoveUnitFromPlatoon = 0x3D
-commandRotatePlatoonLeft = 0x3E
-commandRotatePlatoonRight = 0x3F
-commandUserNoParam0 = 0x40
-commandUserNoParam1 = 0x41
-commandUserNoParam2 = 0x42
-commandUserNoParam3 = 0x43
-commandUserNoParam4 = 0x44
-commandUserNoParam5 = 0x45
-commandUserNoParam6 = 0x46
-commandUserNoParam7 = 0x47
-commandUserNoParam8 = 0x48
-commandUserNoParam9 = 0x49
-commandUserOneParam0 = 0x4A
-commandUserOneParam1 = 0x4B
-commandUserOneParam2 = 0x4C
-commandUserOneParam3 = 0x4D
-commandUserOneParam4 = 0x4E
-commandUserOneParam5 = 0x4F
-commandUserOneParam6 = 0x50
-commandUserOneParam7 = 0x51
-commandUserOneParam8 = 0x52
-commandUserOneParam9 = 0x53
-commandUserObject0 = 0x54
-commandUserObject1 = 0x55
-commandUserObject2 = 0x56
-commandUserObject3 = 0x57
-commandUserObject4 = 0x58
-commandUserObject5 = 0x59
-commandUserObject6 = 0x5A
-commandUserObject7 = 0x5B
-commandUserObject8 = 0x5C
-commandUserObject9 = 0x5D
-commandUserPoint0 = 0x5E
-commandUserPoint1 = 0x5F
-commandUserPoint2 = 0x60
-commandUserPoint3 = 0x61
-commandUserPoint4 = 0x62
-commandUserPoint5 = 0x63
-commandUserPoint6 = 0x64
-commandUserPoint7 = 0x65
-commandUserPoint8 = 0x66
-commandUserPoint9 = 0x67
-commandUserLine0 = 0x68
-commandUserLine1 = 0x69
-commandUserLine2 = 0x6A
-commandUserLine3 = 0x6B
-commandUserLine4 = 0x6C
-commandUserLine5 = 0x6D
-commandUserLine6 = 0x6E
-commandUserLine7 = 0x6F
-commandUserLine8 = 0x70
-commandUserLine9 = 0x71
-commandUserDoubleLine0 = 0x72
-commandUserDoubleLine1 = 0x73
-commandUserDoubleLine2 = 0x74
-commandUserDoubleLine3 = 0x75
-commandUserDoubleLine4 = 0x76
-commandUserDoubleLine5 = 0x77
-commandUserDoubleLine6 = 0x78
-commandUserDoubleLine7 = 0x79
-commandUserDoubleLine8 = 0x7A
-commandUserDoubleLine9 = 0x7B
-commandUserArea0 = 0x7C
-commandUserArea1 = 0x7D
-commandUserArea2 = 0x7E
-commandUserArea3 = 0x7F
-commandUserArea4 = 0x80
-commandUserArea5 = 0x81
-commandUserArea6 = 0x82
-commandUserArea7 = 0x83
-commandUserArea8 = 0x84
-commandUserArea9 = 0x85
-commandScriptPlayerSpecialBuildNextAngle = 0x86
-commandScriptPlayerSpecialSetRepaintSideColorDialog = 0x87
-commandScriptPlayerSpecialChangeUnitsScript = 0x88
-commandScriptPlayerSpecialShowTransporterAutoGetPoint = 0x89
-commandScriptPlayerSpecialShowTransporterAutoPutPoint = 0x8A
-commandBuildingSuperAttack = 0x120
-commandAutodestruction = 0x12B
-commandSoldBuilding = 0x12C
-commandBuildingCreateRain = 0x12F
-commandBuildingCreateSnow = 0x130
-commandBuildingCreateRainStorm = 0x131
-commandBuildingCreateMeteorRain = 0x132
-commandBuildingCreateWind = 0x133
-commandBuildingRemoveCloud = 0x134
-commandBuildingSpyPlayer0 = 0x13A
-commandBuildingSpyPlayer1 = 0x13B
-commandBuildingSpyPlayer2 = 0x13C
-commandBuildingSpyPlayer3 = 0x13D
-commandBuildingSpyPlayer4 = 0x13E
-commandBuildingSpyPlayer5 = 0x13F
-commandBuildingSpyPlayer6 = 0x140
-commandBuildingSpyPlayer7 = 0x141
-commandBuildingSpyPlayer8 = 0x142
-commandBuildingSpyPlayer9 = 0x143
-commandBuildingSpyPlayer10 = 0x144
-commandBuildingSpyPlayer11 = 0x145
-commandBuildingSpyPlayer12 = 0x146
-commandBuildingSpyPlayer13 = 0x147
-commandBuildingSpyPlayer14 = 0x148
-commandBuildingSpyPlayer15 = 0x149
-</pre>
-<p>Unchecked commands (may not work), can be specified only by numeric value:</p>
-<pre>
-pause = 0xa8
-increase game speed = 0xa9
-decrease game speed = 0xaa
-default game speed = 0xab
-change command frequency = 0xac
-leave game = 0xae
-
-transfer money = 0x15e
-hold research = 0x163
-hold production = 0x164
-mount all shields = 0x165
 </pre>
 </body>
 </html>

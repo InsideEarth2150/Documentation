@@ -1,0 +1,56 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+<title>AI features</title>
+<link rel="stylesheet" href="../ieo-style.css">
+</head>
+
+<body>
+
+<p><a href="../index.htm">Index</a>&nbsp;&nbsp;&nbsp; <a href="../main/hierarchy.htm">Objects hierarchy</a>&nbsp;&nbsp;&nbsp; Enums</p>
+
+<hr>
+
+<p><b>AI features</b></p>
+<p>
+<table>
+<thead><th>Name</th><th>Value</th><th>Description</th></thead>
+<tbody>
+<tr><td>aiBuildMiningBuildings</td><td>0x10</td><td>AI builds mine & refinery if needed</td></tr>
+<tr><td>aiBuildMiningUnits</td><td>0x20</td><td>AI builds harvesters or container carriers if needed</td></tr>
+<tr><td>aiControlMiningUnits</td><td>0x40</td><td>AI keeps harvesters or container carriers busy</td></tr>
+<tr><td>aiBuildSupplyBuildings</td><td>0x80</td><td>AI builds <span class="ieo-comment">supply centers</span></td></tr>
+<tr><td>aiBuildSupplyUnits</td><td>0x100</td><td>AI builds supply units </td></tr>
+<tr><td>aiControlSupplyUnits</td><td>0x200</td><td>AI assigns supply units to buildings</td></tr>
+<tr><td>aiBuildPowerBuildings</td><td>0x400</td><td>AI takes care of energy distribution</td></tr>
+<tr><td>aiBuildResearchBuildings</td><td>0x800</td><td>AI builds research building(s)</td></tr>
+<tr><td>aiControlResearches</td><td>0x1000</td><td>AI decides which researches it should invent</td></tr>
+<tr><td>aiControlDefense</td><td>0x2000</td><td>AI checks buildings periodically, and sends defensive platoons if needed</td></tr>
+<tr><td>aiControlOffense</td><td>0x4000</td><td>AI sends periodically attack to the enemy base</td></tr>
+<tr><td>aiBuildBuilders</td><td>0x8000</td><td>AI builds Builders if needed</td></tr>
+<tr><td>aiBuildRepairers</td><td>0x10000</td><td>AI builds repairers and order them tu repair base. <span class="ieo-comment">No, it doesn't order anything - they just stay idle unless something gets damaged in their range of operation</span></td></tr>
+<tr><td>aiBuildShadows</td><td>0x20000</td><td>AI builds and uses shadows. <span class="ieo-comment">"Uses" is again a bit of an overstatement.</span></td></tr>
+<tr><td>aiBuildScreamers</td><td>0x40000</td><td>AI builds and uses screamers</td></tr>
+<tr><td>aiBuildSuperAttack</td><td>0x80000</td><td> AI builds and uses mass destruction weapon</td></tr>
+<tr><td>aiEnabled</td><td>0x100000</td><td>AI enabled/disable</td></tr>
+<tr><td>aiBuildTanks</td><td>0x200000</td><td>AI takes care of building ground units</td></tr>
+<tr><td>aiBuildShips</td><td>0x400000</td><td></td>AI takes care of building ships</tr>
+<tr><td>aiBuildHelicopters</td><td>0x800000</td><td>AI takes care of <span class="ieo-comment">building</span> helicopters</td></tr>
+<tr><td>aiBuildCivilFactory</td><td>0x1000000</td><td>AI builds Civil Vehicle Factory if needed</td></tr>
+<tr><td>aiBuildMilitaryFactory</td><td>0x2000000</td><td>AI builds Military Factory if needed</td></tr>
+<tr><td>aiBuildShipyard</td><td>0x4000000</td><td>AI builds Shipyard if needed  (only if enemy is building it too)</td></tr>
+<tr><td>aiBuildBuildings</td><td>0x7080c90</td><td>AI builds buildings. <span class="ieo-comment">Combination of aiBuildShipyard, aiBuildMilitaryFactory, aiBuildCivilFactory, aiBuildSuperAttack, aiBuildResearchBuildings, aiBuildPowerBuildings, aiBuildSupplyBuildings, aiBuildMiningBuildings. It deosn't include aiDefenseTowers, so it is possible that after calling <i>EnableAIFeatures(aiBuildBuildings, false)</i>, AI would still build towers - this is just a theoretical possiblity that hasn't been verified.</span></td></tr>
+<tr><td>aiBuildSpecialUnits</td><td>0xF8000</td><td>AI builds screamers/schadows etc <span class="ieo-comment">Combination of aiBuildSuperAttack, aiBuildScreamers, aiBuildShadows, aiBuildRepairers and aiBuildBuilders. Especially aiBuildSuperAttack (MDW) and aiBuildBuilders look a bit out of place here.</span></td></tr>
+<tr><td>aiRush</td><td>0x10000000</td><td>AI tries to make first attack as soon as possible</td></tr>
+<tr><td>aiUpgradeCannons</td><td>0x20000000</td><td>AI upgrades cannon. <span class="ieo-comment">The feature controls AI ability to mount weapons on buildings.</span></td></tr>
+<tr><td>aiEverything</td><td>0xFFFFFFF2</td><td>all flags</td></tr>
+<tr><td>aiDefenseTowers</td><td>0x40000000</td><td>AI builds defence towers</td></tr>
+<tr><td>aiRejectAlliance</td><td>0x80000000</td><td>AI allways reject player's offer of alliance</td></tr>
+</tbody>
+</table>
+</p>
+
+</body>
+
+</html>

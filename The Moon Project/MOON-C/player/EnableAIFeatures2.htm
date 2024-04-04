@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>EnableAIFeatures2 function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -16,17 +17,8 @@
 <p><strong>Scope</strong>: public</p>
 
 <p><strong>Parameters</strong><br>
-nFlags:<br>
-ai2BuildingTowers = 0x2 - AI defences heavilly attacked buildings by building defence
-towers<br>
-ai2BuildFromStartingPoint = 0x4 - AI tries to build everything as close to starting
-point as possible<br>
-ai2BuildSappers = 0x8 - AI builds sappers and order them to mine area around<br>
-ai2ChooseEnemy = 0x10 - allows AI to choose enemy (otherwise you have to use choose
-enemy function)<br>
-ai2NeutralAI = 0x20 - AI thread others AI as neutral<br>
-ai2BNSendResult = 0x80000000- player's result may be sent to EarthNet server (you can only
-disable this flag)</p>
+nFlags - see <a href="../enums/AiFeatures2.htm">AI Features 2 enum definition</a><br>
+</p>
 
 <p><strong>Return values</strong><br>
 none
@@ -35,7 +27,11 @@ none
 <p><strong>Description</strong><br>
 </p>
 
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Unlike mentioned here and there in the docs, it has nothing to do with flags from first AiFeatures enum and is just an extension of additional feature flags that didn't fit into 32-bit value of the first enum.</span>
+
 <p><strong>See also</strong><br>
+<a href="EnableAIFeatures.htm">EnableAIFutures</a>
 </p>
 </body>
 </html>

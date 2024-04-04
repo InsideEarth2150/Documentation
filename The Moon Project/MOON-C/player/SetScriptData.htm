@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>SetScriptData function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
 <p><strong>Scope</strong>: public</p>
 
 <p><strong>Parameters</strong><br>
-nDataIndex - index<br>
+nDataIndex - index <span class="ieo-comment"> - from 0 to 19</span><br>
 nDataValue - value
 </p>
 
@@ -27,6 +28,9 @@ none
 <p><strong>Description</strong><br>
 Sets value in common area.
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Data in the "common area" is shared by given player's instances on all levels. If you set data using mission's player instance, it will be available in other levels (main base, otehr bases and next missions). Data is stored in a 20-element array, what limits range of nDataIndex parameter. Calling this function with index &lt;0 or &gt;= 20 will cause no effect.</span>
 
 <p><strong>See also</strong><br>
 <a href="SetScriptUnit.htm">SetScriptUnit</a>, <a href="GetScriptData.htm">GetScriptData</a>,

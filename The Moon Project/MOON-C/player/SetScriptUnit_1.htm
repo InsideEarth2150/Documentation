@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>SetScriptUnit function [MP]</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
 <p><strong>Scope</strong>: public</p>
 
 <p><strong>Parameters</strong><br>
-uUnitIndex - index<br>
+uUnitIndex - index <span class="ieo-comment"> - from 0 to 19</span><br>
 uUnit - unit<br>
 bKeepKilled - if true then killed unit references are not removed, if false then function GetScriptUnit
 returns null when uUnit will be killed (default for first SetScriptUnit fuction).
@@ -31,6 +32,9 @@ Sets pointer unit in common area at the specified index. it is useful to
 establish comunication comunication between missions or for example tracing unit
 (see LC campaign and fang)
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Data in the "common area" is shared by given player's instances on all levels. If you set data using mission's player instance, it will be available in other levels (main base, otehr bases and next missions). Data is stored in a 20-element array, what limits range of nUnitIndex parameter. Calling this function with index &lt;0 or &gt;= 20 will cause no effect.</span>
 
 <p><strong>See also</strong><br>
 </p>

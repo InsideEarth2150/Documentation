@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>EnableCommand function [MP]</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -16,8 +17,8 @@
 <p><strong>Scope</strong>: public</p>
 
 <p><strong>Parameters</strong><br>
-nCommand - command number (see enums in player).<br>
-bEnable - true if enabling command nCommand, false if this command is disabled.
+nCommand - command number (see <a href="../enums/Commands.htm">Commands enum</a>).<br>
+bEnable - true if enabling command nCommand, false if this command is to be disabled.
 </p>
 
 <p><strong>Return values</strong><br>
@@ -32,7 +33,11 @@ human player not for AI players.<br>
 By default all commands are enabled, exept [MP] commands: commandSoldBuildingSold and commandBuildingSpyPlayer*.
 </p>
 
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">Nothing to add.</span>
+
 <p><strong>See also</strong><br>
+<a href="IsCommandEnabled.htm">IsCommandEnabled</a>, <a href="IsCommandDisabled.htm">IsCommandDisabled</a>
 </p>
 
 </body>

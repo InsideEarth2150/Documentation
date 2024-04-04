@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+<title>Chassis flags</title>
+<link rel="stylesheet" href="../ieo-style.css">
+</head>
+
+<body>
+
+<p><a href="../index.htm">Index</a>&nbsp;&nbsp;&nbsp; <a href="../main/hierarchy.htm">Objects hierarchy</a>&nbsp;&nbsp;&nbsp; Enums</p>
+
+<hr>
+
+<p><b>Chassis flags</b></p>
+<p>
+<table>
+<thead><th>Name</th><th>Value</th><th>Description</th></thead>
+<tbody>
+<tr><td>unitMiner</td><td>0x100</td><td></td></tr>
+<tr><td>unitBuilder</td><td>0x200</td><td></td>
+<tr><td>unitHarvester</td><td>0x400</td><td></td>
+<tr><td>unitSupplier</td><td>0x800</td><td></td>
+<tr><td>unitFake</td><td>0x1000</td><td></td>
+<tr><td>unitArmed</td><td>0x2000</td><td></td>
+<tr><td>unitShadow</td><td>0x4000</td><td></td>
+<tr><td>unitScreamer</td><td>0x8000</td><td></td>
+<tr><td>unitObserver</td><td>0x10000</td><td></td>
+<tr><td>unitCarrier</td><td>0x20000</td><td></td>
+<tr><td>unitRepairer</td><td>0x40000</td><td></td>
+<tr><td>unitTransporter</td><td>0x40000</td><td>[MP]</td>
+<tr><td>unitAny</td><td>0xFFF00</td><td></td>
+</tbody>
+</table>
+</p>
+
+<p class="ieo-comment"><strong>Description</strong></p>
+<span class="ieo-comment">Most likely unintended, masks unitRepairer and unitTransporter have the same code. Unit flags do not intersect with <a href="ChassisFlags.htm">Chassis flags</a> and are often used together (see <a href="../player/GetNumberOfUnits_1.htm">GetNumberOfUnits</a> function)</span>
+
+</body>
+
+</html>
