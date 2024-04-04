@@ -15,7 +15,7 @@ ED:
 	- [Easy] Time to repair base: 300s -> 325s
 	- [Medium] Enemy unit spawn frequency: 360s -> 390s
 	- [Hard] Enemy unit spawn frequency: 300s -> 325s
-	- Enemy reinforcement size capped at 48 units
+	- Enemy reinforcement size capped at 32 units
 	- Fixed reinforcement timer - first wave of reinforcements could arrive earlier than intended
 - Mission 04
 	- Enemy reinforcement size capped at 40 units
