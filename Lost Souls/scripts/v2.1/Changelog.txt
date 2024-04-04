@@ -1,0 +1,69 @@
+ED:
+- Mission 01
+	- Reduced enemy wave strength by ~4 units, capped wave size at 40 units
+	- Disabled placing structures for AI
+	- "Fixed" (actually broke) reinforcement timer. This bug introduced in Update002.wd, makes the mission significantly easier than intended
+- Mission 02
+	- [Easy] Player starting money: 20K -> 25K
+	- [Easy] Enemy unit spawn frequency: 350s -> 425s
+	- Slightly simplified winning conditions
+	- Slightly reduced enemy reinforcement size, capped at 40 units
+- Mission 03
+	- [Easy] Player starting money: 10K -> 13K
+	- [Easy] Decreased reinforcement size by 2 units
+	- [Easy] Enemy unit spawn frequency: 420s -> 500s
+	- [Easy] Time to repair base: 300s -> 325s
+	- [Medium] Enemy unit spawn frequency: 360s -> 390s
+	- [Hard] Enemy unit spawn frequency: 300s -> 325s
+	- Enemy reinforcement size capped at 32 units
+	- Fixed reinforcement timer - first wave of reinforcements could arrive earlier than intended
+- Mission 04
+	- Enemy reinforcement size capped at 40 units
+- Mission 05
+	- Enemy reinforcement size capped at 42 units
+- Mission 06
+	- Enemy reinforcement size capped at 40 units
+- Mission 07
+	- Enemy reinforcement (ED) size capped at 40 units
+	- Enemy reinforcement (UCS) size capped at 20 units
+- Mission 08
+	- Enemy reinforcement size capped at 48 units
+- Mission 09
+	- Enemy reinforcement size capped at 48 units
+- Mission 10
+	- Enemy reinforcement size capped at 48 units
+LC:
+- Mission 01
+	- [Easy] Player starting money: 6K -> 8K
+	- Enemy unit spawn frequency: 300s -> 350s
+	- Reduced attacking wave sizes, by 1/7 (removed 1/3 of cannon Pamirs)
+- Mission 02
+	- [Easy] Player starting money: 4K -> 5K
+	- [Easy] Removed some enemy objects (broken - attempts to remove objects at non-existing marker; perhaps it was intended to be placed in the next mission script to destroy 2 of 4 artilleries)
+- Mission 04
+	- Fixed enemy reinforcement size calculation, capped at 42 units
+- Mission 05
+	- Fixed enemy reinforcement size calculation, capped at 40 units
+- Mission 06
+	- Fixed enemy reinforcement size calculation, capped at 39 units
+- Mission 07
+	- Fixed enemy reinforcement size calculation, capped at 20 units (possibly intended limit was 2x larger - 40 units)
+- Mission 08
+	- Fixed enemy reinforcement size calculation, capped at 40 units
+- Mission 09
+	- Fixed enemy reinforcement size calculation, capped at 96 units (possibly intended limit was 2x smaller - 48 units)
+- Mission 10
+	- Fixed enemy reinforcement size calculation, capped at 56 units
+
+UCS:
+- Mission 02
+	- Reduced underground attack wave strength by 50%
+	- Fixed enemy reinforcement size calculation, effectively reduced, capped at 40 units
+- Mission 06
+	- Changed convoy spawn trigger from having 50(easy)/40(medium)/30(hard) military units to a timed event, that occurs after 25(easy)/20(medium)/15(hard) minutes
+- Mission 08
+	- Enemy reinforcement size capped at 40 units
+- Mission 09
+	- Enemy reinforcement size capped at 52 units
+- Mission 10
+	- Enemy reinforcement size capped at 40 units
