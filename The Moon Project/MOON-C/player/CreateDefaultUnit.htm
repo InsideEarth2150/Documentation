@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
 <title>CreateDefaultUnit function</title>
+<link rel="stylesheet" href="../ieo-style.css">
 </head>
 
 <body>
@@ -29,6 +30,16 @@ none
 Creates default units for player race (probe in case of LC, builder in case of
 UCS and ED
 </p>
+
+<p class="ieo-comment"><strong>IEO Description</strong></p>
+<span class="ieo-comment">It literally calls <a href="CreateUnitEx.htm">CreateUnitEx</a>. The parameters are:
+<ul>
+	<li>CreateUnitEx(nX, nY, nZ, null, "UCSUBU1", null, null, null, null, -1) for UCS</li>
+	<li>CreateUnitEx(nX, nY, nZ, null, "EDUBU1", null, null, null, null, -1) for ED</li>
+	<li>CreateUnitEx(nX, nY, nZ, null, "LCUOB1", "LCSOB1", null, null, null, -1) for UCS</li>
+</ul>
+The parameters are hardcoded, so you cannot provide a different "default unit", give it shield etc.
+</span>
 
 <p><strong>See also</strong><br>
 </p>

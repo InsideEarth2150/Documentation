@@ -17,6 +17,10 @@
 <table>
 <thead><th>Name</th><th>Value</th><th>Description</th></thead>
 <tbody>
+<tr><td></td><td><span class="ieo-comment">0x1</span></td><td><span class="ieo-comment">IsAlive flag. It is used by IsAlive function. Cannot be modified by EnableAiFeatures.</span></td></tr>
+<tr><td></td><td><span class="ieo-comment">0x2</span></td><td><span class="ieo-comment">AI feature responsible for creating new unit templates (Headquarter building feature). Cannot be modified by EnableAiFeatures.</span></td></tr>
+<tr><td></td><td><span class="ieo-comment">0x4</span></td><td><span class="ieo-comment">Flag that forces resetting platoon sizes to default. Cannot be modified by EnableAiFeatures.</span></td></tr>
+<tr><td></td><td><span class="ieo-comment">0x8</span></td><td><span class="ieo-comment">Unknown. Cannot be modified by EnableAiFeatures.</span></td></tr>
 <tr><td>aiBuildMiningBuildings</td><td>0x10</td><td>AI builds mine & refinery if needed</td></tr>
 <tr><td>aiBuildMiningUnits</td><td>0x20</td><td>AI builds harvesters or container carriers if needed</td></tr>
 <tr><td>aiControlMiningUnits</td><td>0x40</td><td>AI keeps harvesters or container carriers busy</td></tr>
@@ -35,12 +39,13 @@
 <tr><td>aiBuildSuperAttack</td><td>0x80000</td><td> AI builds and uses mass destruction weapon</td></tr>
 <tr><td>aiEnabled</td><td>0x100000</td><td>AI enabled/disable</td></tr>
 <tr><td>aiBuildTanks</td><td>0x200000</td><td>AI takes care of building ground units</td></tr>
-<tr><td>aiBuildShips</td><td>0x400000</td><td></td>AI takes care of building ships</tr>
+<tr><td>aiBuildShips</td><td>0x400000</td><td>AI takes care of building ships</td></tr>
 <tr><td>aiBuildHelicopters</td><td>0x800000</td><td>AI takes care of <span class="ieo-comment">building</span> helicopters</td></tr>
 <tr><td>aiBuildCivilFactory</td><td>0x1000000</td><td>AI builds Civil Vehicle Factory if needed</td></tr>
 <tr><td>aiBuildMilitaryFactory</td><td>0x2000000</td><td>AI builds Military Factory if needed</td></tr>
 <tr><td>aiBuildShipyard</td><td>0x4000000</td><td>AI builds Shipyard if needed  (only if enemy is building it too)</td></tr>
 <tr><td>aiBuildBuildings</td><td>0x7080c90</td><td>AI builds buildings. <span class="ieo-comment">Combination of aiBuildShipyard, aiBuildMilitaryFactory, aiBuildCivilFactory, aiBuildSuperAttack, aiBuildResearchBuildings, aiBuildPowerBuildings, aiBuildSupplyBuildings, aiBuildMiningBuildings. It deosn't include aiDefenseTowers, so it is possible that after calling <i>EnableAIFeatures(aiBuildBuildings, false)</i>, AI would still build towers - this is just a theoretical possiblity that hasn't been verified.</span></td></tr>
+<tr><td></td><td><span class="ieo-comment">0x8000000</span></td><td><span class="ieo-comment">AI scales to its opponent. For example, AI will try to build as many factories as main enemy has. Can be specified only by number.</span></td></tr>
 <tr><td>aiBuildSpecialUnits</td><td>0xF8000</td><td>AI builds screamers/schadows etc <span class="ieo-comment">Combination of aiBuildSuperAttack, aiBuildScreamers, aiBuildShadows, aiBuildRepairers and aiBuildBuilders. Especially aiBuildSuperAttack (MDW) and aiBuildBuilders look a bit out of place here.</span></td></tr>
 <tr><td>aiRush</td><td>0x10000000</td><td>AI tries to make first attack as soon as possible</td></tr>
 <tr><td>aiUpgradeCannons</td><td>0x20000000</td><td>AI upgrades cannon. <span class="ieo-comment">The feature controls AI ability to mount weapons on buildings.</span></td></tr>
